@@ -25,22 +25,28 @@ export default function ResultsSection() {
 
   const results = [
     {
-      number: '100%',
-      label: 'Client Satisfaction',
-      description: 'Delivering excellence that exceeds expectations',
-      icon: '✓',
-    },
-    {
-      number: '500+',
-      label: 'Projects Completed',
-      description: 'Successful campaigns across industries',
-      icon: '★',
-    },
-    {
-      number: '50+',
-      label: 'Happy Clients',
-      description: 'Building lasting partnerships',
+      number: '127%',
+      label: 'Average Revenue Growth',
+      description: '',
       icon: '◆',
+    },
+    {
+      number: '$2.4B',
+      label: 'Portfolio Market Value',
+      description: '',
+      icon: '✦',
+    },
+    {
+      number: '94%',
+      label: 'Client Retention Rate',
+      description: '',
+      icon: '●',
+    },
+    {
+      number: '12+ Years',
+      label: 'Of Strategic Excellence',
+      description: '',
+      icon: '▲',
     },
   ]
 
@@ -57,12 +63,17 @@ export default function ResultsSection() {
               Results
             </span>
             <h2 className="text-5xl md:text-6xl lg:text-7xl text-white font-serif font-light mb-4">
-              Measurable Impact
+              Numbers That Speak Louder Than Words
             </h2>
+            <p className="text-white/55 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              Performance is not a promise.
+              <br />
+              It is a pattern.
+            </p>
             <div className="h-px w-24 bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mt-6" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {results.map((result, index) => (
               <div
                 key={index}
@@ -76,13 +87,13 @@ export default function ResultsSection() {
                 <div className="result-icon">{result.icon}</div>
                 
                 {/* Number with gradient effect */}
-                <div className="result-number text-7xl md:text-8xl font-bold mb-6 group-hover:scale-105 transition-transform duration-500 relative inline-block">
+                <div className="result-number text-5xl md:text-6xl font-bold mb-5 group-hover:scale-105 transition-transform duration-500 relative inline-block">
                   {result.number}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5 blur-xl group-hover:blur-2xl transition-all duration-500" />
                 </div>
                 
                 {/* Label */}
-                <h3 className="text-base md:text-lg font-semibold text-white uppercase tracking-[0.15em] mb-4 group-hover:text-white transition-colors">
+                <h3 className="text-sm md:text-base font-semibold text-white uppercase tracking-[0.12em] mb-3 group-hover:text-white transition-colors">
                   {result.label}
                 </h3>
                 
@@ -90,9 +101,11 @@ export default function ResultsSection() {
                 <div className="h-px w-12 bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto mb-4 group-hover:w-16 transition-all duration-500" />
                 
                 {/* Description */}
-                <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-xs mx-auto group-hover:text-white/70 transition-colors">
-                  {result.description}
-                </p>
+                {result.description ? (
+                  <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-xs mx-auto group-hover:text-white/70 transition-colors">
+                    {result.description}
+                  </p>
+                ) : null}
 
                 {/* Hover glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/0 to-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -106,7 +119,7 @@ export default function ResultsSection() {
               transitionDelay: visible ? `${results.length * 150 + 300}ms` : '0ms'
             }}>
               <div className="h-px w-16 bg-gradient-to-r from-transparent to-white/20" />
-              <span className="text-white/30 text-xs uppercase tracking-widest">Trusted by Industry Leaders</span>
+              <span className="text-white/40 text-xs uppercase tracking-widest">Results are not milestones. They are standards.</span>
               <div className="h-px w-16 bg-gradient-to-l from-transparent to-white/20" />
             </div>
           </div>

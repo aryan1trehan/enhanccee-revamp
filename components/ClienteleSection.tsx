@@ -29,8 +29,12 @@ export default function ClienteleSection() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">
             Our Clientele
           </h2>
-          <p className="text-white/50 text-base max-w-xl mx-auto">
-            Partnering with ambitious brands to create lasting market impact
+          <p className="text-white/50 text-base max-w-3xl mx-auto leading-8">
+            We partner with founders, visionaries, and enterprises who think beyond immediate wins.
+            <br />
+            Ambition recognizes ambition. Precision attracts precision.
+            <br />
+            Together, we don&apos;t chase markets - we shape them.
           </p>
         </div>
 
