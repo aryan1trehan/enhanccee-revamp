@@ -120,17 +120,17 @@ export default function MetaPage() {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')!
+    const canvasEl = canvas
+    const ctx = canvasEl.getContext('2d')!
     let t = 0, raf = 0
     function resize() {
-      if (!canvas) return
-      canvas.width = canvas.parentElement?.offsetWidth || window.innerWidth
-      canvas.height = canvas.parentElement?.offsetHeight || window.innerHeight
+      canvasEl.width = canvasEl.parentElement?.offsetWidth || window.innerWidth
+      canvasEl.height = canvasEl.parentElement?.offsetHeight || window.innerHeight
     }
     resize()
     window.addEventListener('resize', resize)
     function draw() {
-      const w = canvas.width, h = canvas.height
+      const w = canvasEl.width, h = canvasEl.height
       ctx.clearRect(0, 0, w, h)
       for (let i = 0; i < 4; i++) {
         const x = w * .5 + Math.sin(t * .0004 + i * 1.5) * w * .25
