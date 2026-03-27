@@ -31,8 +31,93 @@ function Divider({ mb = '6rem' }: { mb?: string }) {
   )
 }
 
+function FAQItem({
+  q,
+  a,
+  open,
+  onToggle,
+}: {
+  q: string
+  a: string
+  open: boolean
+  onToggle: () => void
+}) {
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [h, setH] = useState(0)
+
+  useEffect(() => {
+    if (!contentRef.current) return
+    const el = contentRef.current
+    const measure = () => setH(el.scrollHeight || 0)
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  return (
+    <div style={{ borderBottom: '1px solid rgba(255,255,255,.08)' }}>
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        style={{
+          width: '100%',
+          textAlign: 'left',
+          padding: '1.8rem 0',
+          background: 'transparent',
+          border: 0,
+          color: '#ffffff',
+          cursor: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1.5rem',
+        }}
+      >
+        <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.2rem,1.8vw,1.7rem)', fontWeight: 400, lineHeight: 1.25 }}>
+          {q}
+        </span>
+        <span
+          aria-hidden="true"
+          style={{
+            width: 34,
+            height: 34,
+            borderRadius: 999,
+            border: '1px solid rgba(255,255,255,.18)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'rgba(255,255,255,.7)',
+            transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
+            transition: 'transform .35s ease, border-color .35s ease, color .35s ease',
+            flexShrink: 0,
+          }}
+        >
+          +
+        </span>
+      </button>
+
+      <div
+        style={{
+          maxHeight: open ? h + 24 : 0,
+          overflow: 'hidden',
+          transition: 'max-height .55s cubic-bezier(.77,0,.175,1)',
+        }}
+      >
+        <div ref={contentRef} style={{ padding: '0 0 1.8rem 0' }}>
+          <p style={{ margin: 0, fontSize: '.95rem', lineHeight: 1.9, color: 'rgba(255,255,255,.55)', fontWeight: 200 }}>
+            {a}
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function SEOPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [openFAQ, setOpenFAQ] = useState<number | null>(0)
 
   /* ─── LIQUID CANVAS ─── */
   useEffect(() => {
@@ -144,13 +229,13 @@ export default function SEOPage() {
               Enhanccee — Search Architecture
             </p>
             <h1 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(3.2rem,8vw,8.5rem)', lineHeight:1, color:'#ffffff', opacity:0, animation:'seo-fadeUp 1.1s ease .6s forwards', marginBottom:'1.2rem' }}>
-              Ranking is Vanity.<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>Relevance</em><br />is Power.
+              Where visibility is<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>engineered</em><br />not chased.
             </h1>
             <p style={{ fontWeight:200, fontSize:'clamp(.9rem,1.5vw,1.1rem)', lineHeight:1.8, color:'rgba(255,255,255,.55)', maxWidth:580, margin:'0 auto 3.5rem', opacity:0, animation:'seo-fadeUp 1.1s ease .9s forwards' }}>
-              SEO isn&apos;t a service — it&apos;s a permanent infrastructure investment. We engineer organic authority that compounds, positioning your brand as the definitive voice in every market you choose to own.
+              We engineer scalable organic growth for brands that demand authority, not just traffic. This is not reactive optimisation. It is strategic visibility architecture. No shortcuts. No recycled playbooks. Only intentional SEO for brands that intend to lead their category.
             </p>
             <div style={{ opacity:0, animation:'seo-fadeUp 1.1s ease 1.1s forwards', display:'inline-flex', gap:'1.5rem', alignItems:'center' }}>
-              <Link href="/contact" className="seo-btn-white"><span>Engineer Your Authority</span></Link>
+              <Link href="/contact" className="seo-btn-white"><span>Book Your Strategy Session</span></Link>
             </div>
           </div>
 
@@ -164,7 +249,7 @@ export default function SEOPage() {
         <FadeIn>
           <div className="seo-img-banner" style={{ height:'clamp(400px,58vh,700px)' }}>
             <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1800&q=80&fit=crop&crop=center" alt="Data analytics — search architecture" loading="lazy"/>
-            <span className="seo-img-caption">Visibility is permanent infrastructure</span>
+            <span className="seo-img-caption">Strategic visibility architecture</span>
           </div>
         </FadeIn>
 
@@ -172,19 +257,19 @@ export default function SEOPage() {
         <section style={{ padding:'14vh 8vw' }}>
           <Divider mb="6rem"/>
           <FadeIn>
-            <p style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.5)', marginBottom:'4rem' }}>The Philosophy</p>
+            <p style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.5)', marginBottom:'4rem' }}>The Enhanccee Standard</p>
           </FadeIn>
           <FadeIn>
             <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.4rem,5.5vw,6rem)', lineHeight:1.1, color:'#ffffff', marginBottom:'5rem' }}>
-              We don&apos;t chase rankings.<br />We build <em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>search empires.</em>
+              The difference between<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>ranking and relevance</em><br />is intention.
             </h2>
           </FadeIn>
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'5rem 8rem' }}>
             {[
-              { n:'01', strong:'Visibility that compounds over time.', body:'Unlike paid media, organic authority accumulates — every piece of content, every backlink, every technical improvement building a permanent moat that competitors cannot simply outbid.' },
-              { n:'02', strong:'Intent drives everything.', body:'We map every search query to the exact commercial intent behind it — ensuring your brand appears at the precise moment a high-value prospect is ready to make a decision.' },
-              { n:'03', strong:'Technical foundations, not just content.', body:'Elite SEO begins in the architecture. Site speed, crawlability, schema, and Core Web Vitals are not afterthoughts — they are the foundations everything else is built upon.' },
-              { n:'04', strong:'Authority signals that cannot be faked.', body:'We build the links, mentions, and domain signals that genuine authority requires — earned through quality, not manufactured through shortcuts that algorithms eventually punish.' },
+              { n:'01', strong:'Positioning, not just traffic.', body:'Brands partner with Enhanccee because they want more than visits — they want positioning embedded into their search presence and organic growth that scales without eroding perception.' },
+              { n:'02', strong:'Business impact over algorithms.', body:'We don’t optimise for algorithms alone. We optimise for measurable business expansion — transparent reporting centred on organic growth, conversions, and ROI, not vanity metrics.' },
+              { n:'03', strong:'Strategic visibility architecture.', body:'This is not reactive optimisation. It’s an engineered performance ecosystem where each layer reinforces the next, building search momentum that compounds over time.' },
+              { n:'04', strong:'A signature experience.', body:'At Enhanccee, SEO isn’t a service. It’s a signature experience designed to turn visibility into authority — and authority into enterprise value.' },
             ].map((b, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div>
@@ -203,13 +288,13 @@ export default function SEOPage() {
           <FadeIn>
             <div className="seo-img-banner" style={{ height:'clamp(300px,44vh,560px)' }}>
               <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&fit=crop" alt="Search analytics and keyword strategy" loading="lazy"/>
-              <span className="seo-img-caption">Technical Architecture</span>
+              <span className="seo-img-caption">Technical precision</span>
             </div>
           </FadeIn>
           <FadeIn delay={120}>
             <div className="seo-img-banner" style={{ height:'clamp(300px,44vh,560px)' }}>
               <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1200&q=80&fit=crop" alt="Content strategy and authority building" loading="lazy"/>
-              <span className="seo-img-caption">Authority Building</span>
+              <span className="seo-img-caption">Authority-driven content</span>
             </div>
           </FadeIn>
         </div>
@@ -221,17 +306,17 @@ export default function SEOPage() {
             <FadeIn><span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.5)', display:'block', marginBottom:'1.5rem' }}>What We Deliver</span></FadeIn>
             <FadeIn delay={100}>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.5rem,5vw,5.5rem)', color:'#ffffff', lineHeight:1.15 }}>
-                Your Complete<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>Search Ecosystem</em>
+                Focused. Strategic.<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>Built for scale.</em>
               </h2>
             </FadeIn>
           </div>
 
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:2, background:'rgba(255,255,255,.08)' }}>
             {[
-              { num:'I', tag:'Foundation', title:'Technical SEO\nArchitecture', body:'The infrastructure beneath every high-ranking site. We audit, engineer, and optimise crawlability, indexation, site speed, Core Web Vitals, schema, and metadata — so search engines can find, understand, and reward your content.', tags:['Site Audit','Core Web Vitals','Schema Markup','Crawl Optimisation','Index Management'] },
-              { num:'II', tag:'Content', title:'Authority-Led\nContent Strategy', body:'Intent-mapped content systems that build topical authority, establish category trust, and guide high-value prospects through every stage of their decision journey — without keyword stuffing or content sprawl.', tags:['Keyword Intelligence','Topic Clustering','Content Architecture','Editorial Calendar','Semantic SEO'] },
-              { num:'III', tag:'Authority', title:'Off-Page &\nLink Acquisition', body:'Earned authority, not manufactured links. We build the quality backlink profile, brand mentions, and digital PR signals that tell search engines your domain deserves to rank — and sustain that ranking under algorithm updates.', tags:['Link Building','Digital PR','Brand Mentions','Authority Signals','Competitor Gap Analysis'] },
-              { num:'IV', tag:'Intelligence', title:'Analytics &\nGrowth Reporting', body:'You cannot optimise what you cannot measure. We instrument comprehensive tracking, build executive dashboards, and deliver the attribution clarity that connects organic search activity directly to commercial outcomes.', tags:['GA4 & GSC Setup','Rank Tracking','Revenue Attribution','Cohort Analysis','Competitive Intelligence'] },
+              { num:'I', tag:'Technical SEO Foundation', title:'Structural precision\nfor performance', body:'Clean site architecture, advanced crawlability, structured indexation, mobile-first optimisation, site speed enhancement, schema implementation, and metadata refinement — engineered for performance. Scalable visibility begins with structural precision.', tags:['Architecture','Crawlability','Indexation','Schema','Site Speed'] },
+              { num:'II', tag:'Authority-Driven Content SEO', title:'Intent-led content\nsystems', body:'Content systems designed to build topical authority, strengthen trust, and guide users toward conversion. We eliminate keyword clutter and focus on strategic relevance aligned with brand positioning and commercial outcomes.', tags:['Topical Authority','Content Systems','Trust Signals','Conversion Paths','Relevance'] },
+              { num:'III', tag:'Keyword + On-Page Intelligence', title:'Opportunity-led\noptimisation', body:'High-impact keyword mapping aligned with business intent, real search behaviour, and revenue potential — paired with precision on-page optimisation across structure, internal linking, headings hierarchy, content refinement, and UX signals.', tags:['Keyword Mapping','Internal Linking','Headings','UX Signals','Revenue Intent'] },
+              { num:'IV', tag:'Authority Signals + Future Readiness', title:'Earned trust\nthat compounds', body:'Quality backlinks, strategic brand mentions, and digital credibility signals that strengthen domain authority — plus AEO & GEO readiness so visibility extends into Answer Engines and generative search environments as discovery evolves.', tags:['Backlinks','Brand Mentions','Authority','AEO','GEO'] },
             ].map((card, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div className="seo-eco-card">
@@ -249,7 +334,7 @@ export default function SEOPage() {
 
           <FadeIn delay={100}>
             <p style={{ textAlign:'center', marginTop:'6rem', fontFamily:'var(--font-cormorant)', fontSize:'clamp(1.3rem,2.5vw,2rem)', fontStyle:'italic', color:'rgba(255,255,255,.5)', fontWeight:300 }}>
-              Every signal engineered to work together — <em style={{ color:'rgba(255,255,255,.8)', fontStyle:'normal' }}>technically, editorially, and commercially.</em>
+              Every engagement is structured as a performance ecosystem — <em style={{ color:'rgba(255,255,255,.8)', fontStyle:'normal' }}>each layer reinforces the next.</em>
             </p>
           </FadeIn>
         </section>
@@ -261,11 +346,11 @@ export default function SEOPage() {
               <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&fit=crop" alt="SEO strategy process" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', filter:'brightness(.4) saturate(.5)', display:'block' }}/>
             </div>
             <div style={{ background:'#0a0a0a', padding:'6rem 5rem', display:'flex', flexDirection:'column', justifyContent:'center' }}>
-              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'1.8rem' }}>The Enhanccee SEO Method</span>
+              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'1.8rem' }}>Strategic Framework</span>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2rem,3.5vw,4rem)', lineHeight:1.15, color:'#ffffff', marginBottom:'2rem' }}>
-                Precision at<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>every signal</em>
+                The path to<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>dominance</em>
               </h2>
-              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200 }}>We begin where most agencies end — with a forensic audit of your current position, your competitive landscape, and the exact gap between where you rank and where your buyers search. From there, every technical decision, every piece of content, every link is placed with strategic intent.</p>
+              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200 }}>Search leadership is not accidental. It is built through sequence, discipline, and precision — Audit, Strategy, Execution, Optimization, and Scale — strengthening visibility while protecting brand equity.</p>
             </div>
           </div>
         </FadeIn>
@@ -274,7 +359,7 @@ export default function SEOPage() {
         <FadeIn>
           <div className="seo-img-banner" style={{ height:'clamp(300px,42vh,540px)' }}>
             <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1800&q=80&fit=crop" alt="Data-driven search strategy" loading="lazy"/>
-            <span className="seo-img-caption">Where data becomes dominance</span>
+            <span className="seo-img-caption">Built through sequence and precision</span>
           </div>
         </FadeIn>
 
@@ -283,25 +368,25 @@ export default function SEOPage() {
           <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 100% 80% at 50% 50%, rgba(25,25,25,.4) 0%, transparent 70%)', animation:'seo-breathe 8s ease-in-out infinite', pointerEvents:'none' }}/>
           <div style={{ maxWidth:1280, margin:'0 auto', position:'relative', zIndex:1 }}>
             <FadeIn>
-              <p style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'4rem', textAlign:'center' }}>The SEO Standard</p>
+              <p style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'4rem', textAlign:'center' }}>Why Brands Choose Enhanccee</p>
             </FadeIn>
             <FadeIn delay={100}>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.8rem,6vw,6.5rem)', lineHeight:1.05, textAlign:'center', color:'#ffffff', marginBottom:'5rem' }}>
-                Ranking is<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>not the goal.</em>
+                Built for authority.<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>Measured by growth.</em>
               </h2>
             </FadeIn>
             <FadeIn delay={200}>
               <p style={{ fontSize:'clamp(1.1rem,1.6vw,1.3rem)', lineHeight:1.9, color:'rgba(255,255,255,.5)', textAlign:'center', fontWeight:200, marginBottom:'5rem' }}>
-                Rankings fluctuate. Revenue doesn&apos;t lie.<br />
-                We build SEO systems measured by <strong style={{ color:'#ffffff' }}>pipeline, not position.</strong><br />
-                That is what separates us.
+                Brands partner with Enhanccee because they want more than traffic.<br />
+                They want positioning, trust, and scalable organic growth embedded into their search presence.<br />
+                <strong style={{ color:'#ffffff' }}>We don’t optimise for algorithms alone.</strong> We optimise for business impact.
               </p>
             </FadeIn>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:1, background:'rgba(255,255,255,.08)', marginTop:'4rem' }}>
               {[
-                { word:'Authority', sub:'Over Traffic' },
-                { word:'Intent', sub:'Over Keywords' },
-                { word:'Revenue', sub:'Over Rankings' },
+                { word:'100×', sub:'Traffic Scale' },
+                { word:'60%', sub:'Revenue Growth' },
+                { word:'10+', sub:'Years Experience' },
               ].map((s, i) => (
                 <FadeIn key={i} delay={i * 100}>
                   <div style={{ background:'#000', padding:'3rem 2rem', textAlign:'center' }}>
@@ -334,19 +419,19 @@ export default function SEOPage() {
         <section style={{ padding:'14vh 8vw' }}>
           <Divider mb="6rem"/>
           <div style={{ textAlign:'center', marginBottom:'4rem' }}>
-            <FadeIn><span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', display:'block', marginBottom:'1.5rem' }}>What Makes Enhanccee Different</span></FadeIn>
+            <FadeIn><span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', display:'block', marginBottom:'1.5rem' }}>What Makes Us Different</span></FadeIn>
             <FadeIn delay={100}>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.5rem,5vw,5.5rem)', color:'#ffffff', lineHeight:1.15 }}>
-                Built to<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>Compound</em>
+                Strategic.<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>Future-ready.</em>
               </h2>
             </FadeIn>
           </div>
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', maxWidth:1200, margin:'6rem auto 0' }}>
             {[
-              { vs:'Revenue-focused', h:'Not Rank-focused', p:'Position one means nothing if the traffic doesn\'t convert. We align every SEO decision with commercial intent — building visibility in the queries that actually drive pipeline, not just traffic volume.' },
-              { vs:'Technical precision', h:'Not Surface Tactics', p:'Quick fixes and surface-level tactics decay. We engineer the technical foundations, structural architecture, and content systems that withstand algorithm updates and compound over years.' },
-              { vs:'AEO & GEO ready', h:'Not Backwards-looking', p:'Search is evolving toward AI-generated answers and generative experiences. We future-proof your visibility for Answer Engine Optimization and Generative Engine Optimization — not just today\'s algorithms.' },
-              { vs:'Full attribution', h:'Not Vanity Metrics', p:'Every organic session, lead, and closed deal traced back to its source. We connect SEO activity to revenue outcomes with attribution clarity that justifies the investment at board level.' },
+              { vs:'Strategic Intelligence', h:'SEO veterans', p:'SEO veterans with 10+ years driving enterprise and luxury brand growth through structured, scalable organic strategies.' },
+              { vs:'Technical Precision', h:'Engineered implementation', p:'Clean, engineered implementation across every technical SEO layer — architecture, crawlability, indexation, schema, and performance optimisation.' },
+              { vs:'Future-Ready', h:'AEO + GEO optimisation', p:'Advanced AEO and GEO optimisation ensuring visibility across AI-driven search, Answer Engines, and evolving discovery ecosystems.' },
+              { vs:'ROI-Focused', h:'Reporting that matters', p:'Transparent reporting centred on organic growth, conversions, and revenue impact — not vanity metrics.' },
             ].map((d, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div className="seo-diff-item">
@@ -366,11 +451,11 @@ export default function SEOPage() {
         <FadeIn>
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:2, background:'rgba(255,255,255,.08)', minHeight:500 }}>
             <div style={{ background:'#0a0a0a', padding:'6rem 5rem', display:'flex', flexDirection:'column', justifyContent:'center' }}>
-              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'1.8rem' }}>The Long-Term Outcome</span>
+              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'1.8rem' }}>Recognition</span>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2rem,3.5vw,4rem)', lineHeight:1.15, color:'#ffffff', marginBottom:'2rem' }}>
-                Organic authority<br />that feels <em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>unassailable</em>
+                Recognised among<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>emerging best SEO companies</em>
               </h2>
-              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200 }}>When we&apos;re done, your organic channel isn&apos;t a cost centre — it&apos;s a compounding asset. A domain with genuine authority, content that answers every relevant question, and a technical foundation that search engines reward for years. That is what elite SEO looks like.</p>
+              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200 }}>Delivering SEO services across India, UAE, Australia, and the US — supporting both local dominance and global expansion through strategic search engine optimisation.</p>
             </div>
             <div style={{ position:'relative', overflow:'hidden' }}>
               <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?w=1200&q=80&fit=crop" alt="Organic search authority outcome" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', filter:'brightness(.38) saturate(.5)', display:'block' }}/>
@@ -398,9 +483,60 @@ export default function SEOPage() {
         <FadeIn>
           <div className="seo-img-banner" style={{ height:'clamp(200px,28vh,360px)' }}>
             <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1800&q=80&fit=crop" alt="SEO strategy session" loading="lazy"/>
-            <span className="seo-img-caption">Where intent meets infrastructure</span>
+            <span className="seo-img-caption">Ready to scale?</span>
           </div>
         </FadeIn>
+
+        {/* ══════════════ FAQ ══════════════ */}
+        <section style={{ padding:'14vh 8vw' }}>
+          <Divider mb="6rem"/>
+          <div style={{ textAlign:'center', marginBottom:'4rem' }}>
+            <FadeIn>
+              <span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', display:'block', marginBottom:'1.5rem' }}>
+                Frequently Asked Questions
+              </span>
+            </FadeIn>
+            <FadeIn delay={100}>
+              <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.2rem,4.2vw,4.8rem)', color:'#ffffff', lineHeight:1.15 }}>
+                Clarity before<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>commitment</em>
+              </h2>
+            </FadeIn>
+          </div>
+
+          <div style={{ maxWidth: 1100, margin: '0 auto', background: 'rgba(10,10,10,.6)', border: '1px solid rgba(255,255,255,.08)', padding: '0 3rem' }}>
+            {[
+              {
+                q: 'How quickly can we expect SEO results?',
+                a: 'SEO is a long-term growth engine. Initial traction typically begins within months, with compounding authority and organic growth building over time.',
+              },
+              {
+                q: 'What makes Enhanccee different from other SEO companies?',
+                a: 'Our approach integrates technical SEO, authority-driven content, AEO, and GEO strategy — engineered around business impact, not just rankings.',
+              },
+              {
+                q: 'Do you work with luxury and enterprise brands?',
+                a: 'Yes. Our frameworks are designed for brands that prioritise positioning, authority, and scalable market leadership.',
+              },
+              {
+                q: 'What regions do you serve?',
+                a: 'We deliver SEO services across India, UAE, Australia, and the US, supporting both regional and global growth strategies.',
+              },
+              {
+                q: 'Is your SEO approach future-ready?',
+                a: 'Yes. We actively integrate AEO and GEO optimisation to ensure visibility across AI-driven and generative search environments.',
+              },
+            ].map((item, idx) => (
+              <FadeIn key={idx} delay={idx * 80}>
+                <FAQItem
+                  q={item.q}
+                  a={item.a}
+                  open={openFAQ === idx}
+                  onToggle={() => setOpenFAQ((v) => (v === idx ? null : idx))}
+                />
+              </FadeIn>
+            ))}
+          </div>
+        </section>
 
         {/* ══════════════ CTA ══════════════ */}
         <section style={{ padding:'14vh 8vw' }}>
@@ -408,14 +544,14 @@ export default function SEOPage() {
             <div style={{ background:'rgba(12,12,12,.9)', border:'1px solid rgba(255,255,255,.1)', backdropFilter:'blur(20px)', padding:'8rem 6rem', textAlign:'center', position:'relative', overflow:'hidden', maxWidth:1100, margin:'0 auto' }}>
               <div style={{ position:'absolute', top:0, left:0, right:0, height:1, background:'linear-gradient(to right, transparent, rgba(255,255,255,.3), transparent)' }}/>
               <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,255,255,.025) 0%, transparent 60%)', pointerEvents:'none' }}/>
-              <span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'2rem', display:'block', position:'relative', zIndex:1 }}>Engineer Your Search Dominance</span>
+              <span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'2rem', display:'block', position:'relative', zIndex:1 }}>Ready to scale?</span>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.5rem,5vw,5.5rem)', color:'#ffffff', lineHeight:1.1, marginBottom:'2rem', position:'relative', zIndex:1 }}>
-                Your organic authority is<br />a <em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>permanent asset</em> — if<br />you build it correctly.
+                Let’s Engineer Your<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>SEO Strategy</em>
               </h2>
-              <p style={{ fontSize:'clamp(.9rem,1.3vw,1.1rem)', color:'rgba(255,255,255,.45)', fontWeight:200, lineHeight:1.8, maxWidth:520, margin:'0 auto 4rem', position:'relative', zIndex:1 }}>We partner with brands ready to build search authority that compounds over years, not campaigns. Let&apos;s begin the conversation.</p>
+              <p style={{ fontSize:'clamp(.9rem,1.3vw,1.1rem)', color:'rgba(255,255,255,.45)', fontWeight:200, lineHeight:1.8, maxWidth:720, margin:'0 auto 4rem', position:'relative', zIndex:1 }}>Partner with Enhanccee for SEO that builds authority, strengthens trust, and drives scalable organic growth designed to compound over time.</p>
               <div style={{ display:'flex', gap:'1.5rem', justifyContent:'center', flexWrap:'wrap', position:'relative', zIndex:1 }}>
-                <Link href="/contact" className="seo-btn-white"><span>Begin Your SEO Architecture</span></Link>
-                <Link href="/clientele" className="seo-btn-ghost">View Our Work</Link>
+                <Link href="/contact" className="seo-btn-white"><span>Book Your Strategy Session</span></Link>
+                <Link href="/clientele" className="seo-btn-ghost">Start Your Growth</Link>
               </div>
             </div>
           </FadeIn>
