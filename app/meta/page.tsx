@@ -1,301 +1,401 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-export default function MetaPage() {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null)
-  const [visibleSteps, setVisibleSteps] = useState<boolean[]>([])
-  const frameworkRef = useRef<HTMLDivElement>(null)
-
+function FadeIn({ children, delay = 0, style = {} }: { children: React.ReactNode; delay?: number; style?: React.CSSProperties }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [vis, setVis] = useState(false)
   useEffect(() => {
-    setVisibleSteps([true, false, false, false, false])
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        for (let i = 1; i < 5; i++) {
-          setTimeout(() => {
-            setVisibleSteps((prev) => { const n = [...prev]; n[i] = true; return n })
-          }, i * 300)
-        }
-        if (frameworkRef.current) observer.unobserve(frameworkRef.current)
-      }
-    }, { threshold: 0.1 })
-    if (frameworkRef.current) observer.observe(frameworkRef.current)
-    return () => { if (frameworkRef.current) observer.unobserve(frameworkRef.current) }
+    if (!ref.current) return
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVis(true); io.disconnect() } }, { threshold: 0.1 })
+    io.observe(ref.current)
+    return () => io.disconnect()
   }, [])
-
-  const toggleFAQ = (i: number) => setOpenFAQ(openFAQ === i ? null : i)
-
-  const faqs = [
-    { question: 'How quickly can we expect to see results from Meta advertising?', answer: 'Meta advertising typically shows initial results within 1-2 weeks as campaigns optimize. Significant performance improvements and scaling usually occur within 4-8 weeks, depending on your budget, audience targeting, and campaign objectives.' },
-    { question: 'What makes Enhanccee different from other Meta advertising agencies?', answer: 'We don\'t just run ads — we engineer campaigns for business impact. Our approach combines creative excellence with data-driven optimization, focusing on conversions and revenue rather than just impressions.' },
-    { question: 'Do you work with luxury and enterprise brands?', answer: 'Yes, we specialize in working with luxury and enterprise brands. Our team has extensive experience managing high-value campaigns for premium brands and large-scale organizations.' },
-    { question: 'What regions do you serve?', answer: 'We deliver Meta advertising services across India, UAE, Australia, and the US. Our team supports both local and global campaigns.' },
-    { question: 'Is your Meta advertising approach future-ready?', answer: 'Absolutely. We stay ahead of Meta\'s evolving platform with advanced targeting, creative optimization, and AI-driven campaign management.' },
-  ]
-
-  const frameworkSteps = [
-    { number: '01', title: 'Audit', description: 'Comprehensive analysis of current campaigns and competitive landscape' },
-    { number: '02', title: 'Strategy', description: 'Data-driven campaign architecture aligned with business objectives' },
-    { number: '03', title: 'Execution', description: 'Precision campaign launch across Facebook, Instagram, and Meta platforms' },
-    { number: '04', title: 'Optimization', description: 'Continuous A/B testing and performance refinement for maximum ROI' },
-    { number: '05', title: 'Scale', description: 'Sustained growth and expanded reach across target audiences' },
-  ]
-
-  const deliverables = [
-    { title: 'CAMPAIGN STRATEGY & ARCHITECTURE', description: 'Data-driven campaign structure, audience segmentation, budget allocation, and conversion optimization — engineered for performance.' },
-    { title: 'CREATIVE OPTIMIZATION', description: 'A/B testing, creative refinement, and visual storytelling that builds trust and guides users toward conversion — not just engagement.' },
-    { title: 'AUDIENCE TARGETING & RETARGETING', description: 'Advanced audience segmentation aligned with business intent, customer behavior, and revenue potential.' },
-    { title: 'PERFORMANCE ANALYTICS', description: 'Real-time tracking, conversion attribution, and ROI analysis to optimize campaigns and maximize business impact.' },
-    { title: 'BUDGET OPTIMIZATION', description: 'Strategic budget allocation and bid management that maximizes ROI while scaling profitable campaigns.' },
-    { title: 'CONVERSION TRACKING & ATTRIBUTION', description: 'Advanced tracking setup and multi-touch attribution to understand the full customer journey and optimize for conversions.' },
-  ]
-
   return (
-    <div className="min-h-screen">
-      <Header />
-
-      {/* ── SECTION 1: HERO — BLACK ── */}
-      <section className="relative px-6 md:px-12 lg:px-16 py-20 md:py-36 flex flex-col items-center justify-center min-h-[85vh] bg-black overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80&fit=crop"
-            alt="Digital marketing analytics"
-            className="w-full h-full object-cover"
-            style={{ filter: 'brightness(0.3) saturate(0.7)' }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
-        </div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <span className="text-white/40 text-xs font-semibold uppercase tracking-[0.3em] mb-6 block">
-            Meta Advertising
-          </span>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-light mb-6 leading-tight text-white">
-            Traffic is Vanity.<br />
-            <em className="not-italic">Conversions are Power.</em>
-          </h1>
-          <div className="h-px w-16 bg-white/20 mx-auto mb-8" />
-          <p className="text-lg md:text-xl text-white/60 max-w-3xl mx-auto mb-12">
-            We engineer high-performance Meta campaigns that drive measurable business results, not just clicks.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-black px-10 py-4 font-semibold text-sm uppercase tracking-[0.2em] hover:bg-gray-100 transition-all duration-300 hover:scale-105" style={{ color: '#000000' }}>
-              Get Your Strategy
-            </button>
-            <button className="border border-white/30 text-white px-10 py-4 font-semibold text-sm uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all duration-300 hover:scale-105">
-              View Case Studies
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 2: ENHANCCEE STANDARD — WHITE ── */}
-      <section className="px-6 md:px-12 lg:px-16 py-24 bg-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <div className="order-2 lg:order-1">
-            <span className="text-black/40 text-xs uppercase tracking-[0.3em] mb-4 block">Our Standard</span>
-            <h2 className="text-5xl md:text-6xl font-serif font-light text-black mb-4 leading-tight">
-              The Enhanccee<br />Standard
-            </h2>
-            <div className="h-px w-24 bg-black mb-8" />
-            <div className="space-y-5 text-black/70 text-lg leading-relaxed">
-              <p>The difference between clicks and conversions is <span className="text-black font-semibold">strategy</span>.</p>
-              <p>We don't just run ads; we engineer campaigns for <span className="text-black font-semibold">business impact</span>.</p>
-              <p>At Enhanccee, Meta advertising isn't a service — it's a <span className="text-black font-semibold">signature experience</span>.</p>
-            </div>
-          </div>
-          <div className="relative h-96 lg:h-[480px] order-1 lg:order-2 overflow-hidden rounded-lg">
-            <img
-              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&fit=crop"
-              alt="Marketing strategy and analytics"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 3: WHAT WE DELIVER — BLACK ── */}
-      <section className="px-6 md:px-12 lg:px-16 py-24 bg-black">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-white/40 text-xs uppercase tracking-[0.3em] mb-4 block">What We Deliver</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-white">
-              Focused. Strategic. Built for Scale.
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
-            {deliverables.map((item, i) => (
-              <div key={i} className="bg-black p-8 group hover:bg-white/5 transition-all duration-300">
-                <div className="text-white/20 text-4xl font-light mb-4">{String(i+1).padStart(2,'0')}</div>
-                <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4 leading-tight">{item.title}</h3>
-                <div className="h-px w-8 bg-white/20 mb-4 group-hover:w-16 transition-all duration-300" />
-                <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 4: STRATEGIC FRAMEWORK — WHITE ── */}
-      <section ref={frameworkRef} className="px-6 md:px-12 lg:px-16 py-24 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-black/40 text-xs uppercase tracking-[0.3em] mb-4 block">Strategic Framework</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-black">The Path to Dominance</h2>
-          </div>
-          <div className="relative">
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-black/10 hidden md:block" />
-            <div className="space-y-12 md:space-y-16">
-              {frameworkSteps.map((step, i) => {
-                const vis = visibleSteps[i] ?? false
-                return (
-                  <div key={i} className={`relative flex items-center ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} transition-all duration-700 ${vis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: vis ? `${i*300}ms` : '0ms' }}>
-                    <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-black rounded-full z-10 hidden md:block" />
-                    <div className={`flex-1 bg-white border border-black/10 p-8 ${i % 2 === 0 ? 'md:mr-auto md:pr-16' : 'md:ml-auto md:pl-16'} max-w-md hover:border-black/30 hover:shadow-lg transition-all duration-300`}>
-                      <div className="text-5xl font-light text-black/10 mb-4">{step.number}</div>
-                      <h3 className="text-3xl font-semibold text-black mb-3">{step.title}</h3>
-                      <p className="text-black/60 text-lg leading-relaxed">{step.description}</p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 5: WHY BRANDS CHOOSE — BLACK ── */}
-      <section className="px-6 md:px-12 lg:px-16 py-24 bg-black relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80&fit=crop"
-            alt="Social media marketing"
-            className="w-full h-full object-cover"
-            style={{ filter: 'brightness(0.25) saturate(0.6)' }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/80 to-black/90" />
-        </div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-white mb-6">Why Brands Choose Enhanccee</h2>
-            <p className="text-lg text-white/60 max-w-3xl mx-auto">
-              The difference between clicks and conversions is strategy. Brands partner with Enhanccee because they want measurable ROI, scalable growth, and campaigns that drive business impact.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 mb-16">
-            {[{ value: '3×', label: 'ROI Increase' }, { value: '85%', label: 'Conversion Rate' }, { value: '10+', label: 'Years Experience' }].map((s, i) => (
-              <div key={i} className="bg-black/60 backdrop-blur-sm p-12 text-center border border-white/5">
-                <div className="text-6xl md:text-7xl font-bold text-white mb-4">{s.value}</div>
-                <div className="text-white/50 text-xs font-semibold uppercase tracking-[0.25em]">{s.label}</div>
-              </div>
-            ))}
-          </div>
-          <div className="border border-white/15 p-12 text-center max-w-4xl mx-auto bg-black/40 backdrop-blur-sm">
-            <p className="text-white/80 text-xl md:text-2xl italic mb-4">&quot;We don't optimize for impressions alone&quot;</p>
-            <p className="text-white text-xl md:text-2xl font-semibold">We optimize for business impact</p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 6: WHAT MAKES US DIFFERENT — WHITE ── */}
-      <section className="px-6 md:px-12 lg:px-16 py-24 bg-white">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div>
-            <h2 className="text-5xl md:text-6xl font-serif font-light text-black mb-2">What Makes Us</h2>
-            <h2 className="text-5xl md:text-6xl font-serif font-light text-black/40 mb-8">Different</h2>
-            <div className="space-y-6">
-              {[
-                { title: 'Strategic Intelligence', description: 'Meta advertising veterans with 10+ years driving enterprise and luxury brand growth' },
-                { title: 'Creative Excellence', description: 'Data-driven creative optimization across every campaign touchpoint' },
-                { title: 'Future-Ready', description: 'Advanced targeting and AI-driven optimization ensuring performance in evolving Meta ecosystem' },
-                { title: 'ROI-Focused', description: 'Transparent reporting on conversions, revenue impact, and campaign performance' },
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <div className="w-1.5 h-1.5 bg-black mt-3 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-black font-semibold text-lg mb-1">{item.title}</h3>
-                    <p className="text-black/60 leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="relative overflow-hidden rounded-lg">
-            <img
-              src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&q=80&fit=crop"
-              alt="Digital marketing team collaboration"
-              className="w-full h-full object-cover"
-              style={{ minHeight: '500px' }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-8">
-              <span className="text-white/60 text-xs uppercase tracking-[0.3em] mb-4 block">Recognition</span>
-              <h3 className="text-3xl md:text-4xl font-semibold text-white mb-6">Recognised among emerging best Meta advertising agencies</h3>
-              <p className="text-white/80 mb-8 leading-relaxed">Delivering Meta advertising services across India, UAE, Australia, and the US — supporting both local and global growth.</p>
-              <button className="bg-white text-black px-8 py-4 font-semibold text-sm uppercase tracking-[0.2em] hover:bg-gray-100 transition-all duration-300 hover:scale-105 w-fit" style={{ color: '#000000' }}>
-                Start Your Growth
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 7: FAQ — BLACK ── */}
-      <section className="px-6 md:px-12 lg:px-16 py-24 bg-black">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-serif font-light text-white text-center mb-16">Frequently Asked Questions</h2>
-          <div className="space-y-px bg-white/10">
-            {faqs.map((faq, i) => (
-              <div key={i} className="bg-black">
-                <button onClick={() => toggleFAQ(i)} className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-white/5 transition-colors duration-200">
-                  <span className="text-white text-lg pr-8 font-medium">{faq.question}</span>
-                  <svg className={`w-4 h-4 text-white/50 flex-shrink-0 transition-transform duration-300 ${openFAQ === i ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <div className={`overflow-hidden transition-all duration-300 ${openFAQ === i ? 'max-h-60' : 'max-h-0'}`}>
-                  <div className="px-6 pb-5 pt-2 border-t border-white/10">
-                    <p className="text-white/60 leading-relaxed">{faq.answer}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 8: CTA — WHITE ── */}
-      <section className="px-6 md:px-12 lg:px-16 py-24 md:py-36 bg-white relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&q=80&fit=crop"
-            alt="Business growth and strategy"
-            className="w-full h-full object-cover"
-            style={{ filter: 'brightness(0.4) saturate(0.5)' }}
-          />
-          <div className="absolute inset-0 bg-white/85" />
-        </div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <span className="text-black/40 text-sm uppercase tracking-[0.3em] mb-6 block">Ready to Scale?</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-black mb-6 leading-tight">
-            Let&apos;s Engineer Your<br /><em className="not-italic">Meta Strategy</em>
-          </h2>
-          <div className="h-px w-16 bg-black/20 mx-auto mb-8" />
-          <p className="text-lg text-black/60 max-w-2xl mx-auto mb-12">
-            Partner with Enhanccee for Meta advertising that drives conversions, trust, and scalable business growth.
-          </p>
-          <button className="bg-black text-white px-12 py-5 font-semibold text-sm uppercase tracking-[0.2em] hover:bg-gray-800 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
-            Book Your Strategy Session
-          </button>
-        </div>
-      </section>
-
-      <Footer />
+    <div ref={ref} style={{ opacity: vis ? 1 : 0, transform: vis ? 'none' : 'translateY(32px)', transition: `opacity .85s ease ${delay}ms, transform .85s ease ${delay}ms`, ...style }}>
+      {children}
     </div>
   )
 }
 
+function Divider({ mb = '6rem' }: { mb?: string }) {
+  return (
+    <div style={{ width: '100%', height: 1, background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent)', position: 'relative', marginBottom: mb }}>
+      <span style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', color: 'rgba(255,255,255,0.3)', fontSize: '.5rem', background: '#000', padding: '0 1rem' }}>◆</span>
+    </div>
+  )
+}
+
+function FAQItem({
+  q,
+  a,
+  open,
+  onToggle,
+}: {
+  q: string
+  a: string
+  open: boolean
+  onToggle: () => void
+}) {
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [h, setH] = useState(0)
+
+  useEffect(() => {
+    if (!contentRef.current) return
+    const el = contentRef.current
+    const measure = () => setH(el.scrollHeight || 0)
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  return (
+    <div style={{ borderBottom: '1px solid rgba(255,255,255,.08)' }}>
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        style={{
+          width: '100%',
+          textAlign: 'left',
+          padding: '1.8rem 0',
+          background: 'transparent',
+          border: 0,
+          color: '#ffffff',
+          cursor: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '1.5rem',
+        }}
+      >
+        <span style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.2rem,1.8vw,1.7rem)', fontWeight: 400, lineHeight: 1.25 }}>
+          {q}
+        </span>
+        <span
+          aria-hidden="true"
+          style={{
+            width: 34,
+            height: 34,
+            borderRadius: 999,
+            border: '1px solid rgba(255,255,255,.18)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'rgba(255,255,255,.7)',
+            transform: open ? 'rotate(45deg)' : 'rotate(0deg)',
+            transition: 'transform .35s ease, border-color .35s ease, color .35s ease',
+            flexShrink: 0,
+          }}
+        >
+          +
+        </span>
+      </button>
+
+      <div
+        style={{
+          maxHeight: open ? h + 24 : 0,
+          overflow: 'hidden',
+          transition: 'max-height .55s cubic-bezier(.77,0,.175,1)',
+        }}
+      >
+        <div ref={contentRef} style={{ padding: '0 0 1.8rem 0' }}>
+          <p style={{ margin: 0, fontSize: '.95rem', lineHeight: 1.9, color: 'rgba(255,255,255,.55)', fontWeight: 200 }}>
+            {a}
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function MetaPage() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [openFAQ, setOpenFAQ] = useState<number | null>(0)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')!
+    let t = 0, raf = 0
+    function resize() {
+      if (!canvas) return
+      canvas.width = canvas.parentElement?.offsetWidth || window.innerWidth
+      canvas.height = canvas.parentElement?.offsetHeight || window.innerHeight
+    }
+    resize()
+    window.addEventListener('resize', resize)
+    function draw() {
+      const w = canvas.width, h = canvas.height
+      ctx.clearRect(0, 0, w, h)
+      for (let i = 0; i < 4; i++) {
+        const x = w * .5 + Math.sin(t * .0004 + i * 1.5) * w * .25
+        const y = h * .5 + Math.cos(t * .0003 + i * 2.1) * h * .25
+        const r = w * .3 + Math.sin(t * .0005 + i) * w * .08
+        const a = .035 + Math.sin(t * .0006 + i) * .015
+        const g = ctx.createRadialGradient(x, y, 0, x, y, r)
+        g.addColorStop(0, i % 2 === 0 ? `rgba(255,255,255,${a * 0.4})` : `rgba(180,180,180,${a * 0.2})`)
+        g.addColorStop(1, 'rgba(0,0,0,0)')
+        ctx.fillStyle = g
+        ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill()
+      }
+      t++; raf = requestAnimationFrame(draw)
+    }
+    draw()
+    return () => { window.removeEventListener('resize', resize); cancelAnimationFrame(raf) }
+  }, [])
+
+  useEffect(() => {
+    const dot = document.getElementById('meta-dot')
+    const ring = document.getElementById('meta-ring')
+    if (!dot || !ring) return
+    let mx = 0, my = 0, rx = 0, ry = 0
+    const onMove = (e: MouseEvent) => {
+      mx = e.clientX; my = e.clientY
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px'
+    }
+    document.addEventListener('mousemove', onMove)
+    ;(function loop() {
+      rx += (mx - rx) * .12; ry += (my - ry) * .12
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px'
+      requestAnimationFrame(loop)
+    })()
+    return () => document.removeEventListener('mousemove', onMove)
+  }, [])
+
+  const deliverables = [
+    { num: 'I', tag: 'Strategy', title: 'Meta Ads Strategy\nArchitecture', body: 'Comprehensive advertising strategy built around audience intelligence, funnel design, creative positioning, and conversion pathways engineered for scalable performance.' },
+    { num: 'II', tag: 'Targeting', title: 'Audience & Targeting\nIntelligence', body: 'Advanced audience research across interests, behaviours, lookalike modelling, and custom audiences to ensure every campaign reaches the highest-value prospects.' },
+    { num: 'III', tag: 'Creative', title: 'Creative Strategy &\nAd Development', body: 'Performance-driven ad concepts, copy frameworks, and visual direction designed to capture attention, communicate value, and drive measurable conversions.' },
+    { num: 'IV', tag: 'Funnels', title: 'Conversion Funnel\nOptimization', body: 'Strategic campaign structures across awareness, consideration, and conversion stages — ensuring consistent user movement through the customer journey.' },
+    { num: 'V', tag: 'Tracking', title: 'Meta Pixel &\nConversion Tracking', body: 'Accurate data tracking through Meta Pixel, event optimisation, and conversion APIs to capture actionable insights and improve campaign performance.' },
+    { num: 'VI', tag: 'Retargeting', title: 'Retargeting & Customer\nJourney Ads', body: 'Precision retargeting campaigns that re-engage high-intent users, reduce drop-offs, and maximise conversion potential.' },
+    { num: 'VII', tag: 'Analytics', title: 'Performance Analytics &\nROI Insights', body: 'Transparent reporting focused on campaign efficiency, cost per acquisition, revenue growth, and return on ad spend.' },
+  ]
+
+  const frameworkSteps = [
+    { n: '01', t: 'Audit', d: 'Comprehensive audit of ad accounts, creative performance, audience data, and conversion tracking to identify optimisation opportunities.' },
+    { n: '02', t: 'Strategy', d: 'A data-driven Meta Ads roadmap aligned with business goals, growth targets, and audience acquisition strategy.' },
+    { n: '03', t: 'Execution', d: 'Precision campaign deployment across creatives, targeting, and budget allocation to maximise performance and conversion potential.' },
+    { n: '04', t: 'Optimization', d: 'Continuous campaign refinement based on real-time performance data, audience signals, and conversion insights.' },
+    { n: '05', t: 'Scale', d: 'Sustained ad performance, expanded audience reach, and profitable customer acquisition designed for long-term growth.' },
+  ]
+
+  const faqs = [
+    { q: 'How quickly can we expect Meta Ads results?', a: 'Meta Ads can begin generating data and early conversions quickly, while optimisation phases improve efficiency and scaling over time.' },
+    { q: 'What makes Enhanccee different from other advertising agencies?', a: 'Our Meta Ads strategy combines audience intelligence, creative precision, funnel optimisation, and performance analytics focused on measurable business growth.' },
+    { q: 'Do you work with luxury and enterprise brands?', a: 'Yes. Our advertising frameworks are designed for brands focused on authority, premium positioning, and scalable customer acquisition.' },
+    { q: 'What regions do you serve?', a: 'We deliver Meta Ads services across India, UAE, Australia, and the US, supporting both regional and global advertising strategies.' },
+    { q: 'Do you manage creatives and strategy together?', a: 'Yes. Our team integrates creative strategy with campaign management to ensure advertising performance aligns with brand positioning and conversion goals.' },
+  ]
+
+  return (
+    <>
+      <style>{`
+        @keyframes meta-fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes meta-scrollPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+        .meta-btn-white { display:inline-block; padding:1rem 2.8rem; border:1px solid rgba(255,255,255,0.6); color:#ffffff; font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; position:relative; overflow:hidden; transition:color .4s; }
+        .meta-btn-white::before { content:''; position:absolute; inset:0; background:#ffffff; transform:scaleX(0); transform-origin:left; transition:transform .45s cubic-bezier(.77,0,.175,1); }
+        .meta-btn-white:hover::before { transform:scaleX(1); }
+        .meta-btn-white:hover { color:#000000; }
+        .meta-btn-white span { position:relative; z-index:1; }
+        .meta-btn-ghost { display:inline-block; padding:1rem 2.8rem; color:rgba(255,255,255,.6); font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; border:1px solid rgba(255,255,255,.15); transition:all .4s; }
+        .meta-btn-ghost:hover { border-color:rgba(255,255,255,.5); color:#ffffff; }
+        .meta-img-banner { width:100%; position:relative; overflow:hidden; display:block; line-height:0; }
+        .meta-img-banner img { width:100%; height:100%; object-fit:cover; display:block; filter:brightness(.4) saturate(.5); }
+      `}</style>
+
+      <div id="meta-dot" style={{ position:'fixed', width:10, height:10, background:'#ffffff', borderRadius:'50%', pointerEvents:'none', zIndex:9999, transform:'translate(-50%,-50%)', mixBlendMode:'difference' }}/>
+      <div id="meta-ring" style={{ position:'fixed', width:36, height:36, border:'1px solid rgba(255,255,255,.3)', borderRadius:'50%', pointerEvents:'none', zIndex:9998, transform:'translate(-50%,-50%)' }}/>
+
+      <Header />
+      <main style={{ backgroundColor:'#000000', color:'#ffffff', fontFamily:'var(--font-montserrat)', cursor:'none' }}>
+        <section style={{ position:'relative', minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', overflow:'hidden', padding:'0 6vw' }}>
+          <canvas ref={canvasRef} style={{ position:'absolute', inset:0, width:'100%', height:'100%', opacity:.4 }}/>
+          <div style={{ position:'absolute', inset:0, zIndex:1, background:'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(25,25,25,.45) 0%, transparent 70%), #000000' }}/>
+          <div style={{ position:'relative', zIndex:3, textAlign:'center', maxWidth:1280 }}>
+            <p style={{ fontWeight:200, fontSize:'clamp(.65rem,1.2vw,.8rem)', letterSpacing:'.35em', textTransform:'uppercase', color:'rgba(255,255,255,.5)', opacity:0, animation:'meta-fadeUp 1s ease .3s forwards', marginBottom:'2rem' }}>Enhanccee — Meta Ads Architecture</p>
+            <h1 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(3.2rem,8vw,8.5rem)', lineHeight:1, color:'#ffffff', opacity:0, animation:'meta-fadeUp 1.1s ease .6s forwards', marginBottom:'1.2rem' }}>
+              Where growth is<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>engineered</em><br />not guessed.
+            </h1>
+            <p style={{ fontWeight:200, fontSize:'clamp(.9rem,1.5vw,1.1rem)', lineHeight:1.8, color:'rgba(255,255,255,.55)', maxWidth:780, margin:'0 auto 3.5rem', opacity:0, animation:'meta-fadeUp 1.1s ease .9s forwards' }}>
+              Advertising isn’t about spending more. It’s about deploying capital with precision. At Enhanccee, we design Meta Ads strategies that transform paid media into a scalable revenue engine built on data, behavioural psychology, and performance intelligence. While most treat Meta advertising as campaign management, we build it as infrastructure — engineered to acquire customers efficiently, scale profitably, and strengthen brand equity. No random creatives. No algorithm chasing. Only intentional Meta Ads performance systems for brands that want measurable growth.
+            </p>
+            <div style={{ opacity:0, animation:'meta-fadeUp 1.1s ease 1.1s forwards', display:'inline-flex', gap:'1.5rem', alignItems:'center', flexWrap:'wrap', justifyContent:'center' }}>
+              <Link href="/contact" className="meta-btn-white"><span>Book Your Strategy Session</span></Link>
+              <Link href="/clientele" className="meta-btn-ghost">Start Your Growth</Link>
+            </div>
+          </div>
+          <div style={{ position:'absolute', bottom:'2.5rem', left:'50%', transform:'translateX(-50%)', zIndex:3, display:'flex', flexDirection:'column', alignItems:'center', gap:'.5rem', opacity:0, animation:'meta-fadeUp 1s ease 1.6s forwards' }}>
+            <span style={{ fontSize:'.65rem', letterSpacing:'.3em', textTransform:'uppercase', color:'rgba(255,255,255,.25)' }}>Explore</span>
+            <div style={{ width:1, height:50, background:'linear-gradient(to bottom, rgba(255,255,255,.4), transparent)', animation:'meta-scrollPulse 2s ease-in-out infinite' }}/>
+          </div>
+        </section>
+
+        <FadeIn>
+          <div className="meta-img-banner" style={{ height:'clamp(400px,58vh,700px)' }}>
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1800&q=80&fit=crop&crop=center" alt="Meta ads analytics" loading="lazy"/>
+          </div>
+        </FadeIn>
+
+        <section style={{ padding:'14vh 8vw' }}>
+          <Divider mb="6rem"/>
+          <FadeIn><p style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.5)', marginBottom:'4rem' }}>The Enhanccee Standard</p></FadeIn>
+          <FadeIn><h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.4rem,5.5vw,6rem)', lineHeight:1.1, color:'#ffffff', marginBottom:'5rem' }}>The difference between<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>spending and scaling</em><br />is strategy.</h2></FadeIn>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'5rem 8rem' }}>
+            {[
+              { n:'01', strong:'Strategy over spend.', body:'Brands partner with Enhanccee because they want more than ads — they want profitable growth, measurable performance, and scalable acquisition systems.' },
+              { n:'02', strong:'Infrastructure mindset.', body:'While most treat Meta advertising as campaign management, we build it as infrastructure for scale and long-term performance.' },
+              { n:'03', strong:'Intentional systems.', body:'No random creatives. No algorithm chasing. Only intentional Meta Ads performance systems for measurable growth.' },
+              { n:'04', strong:'Business impact focus.', body:'We don’t run ads for impressions alone. We engineer Meta Ads campaigns for measurable business impact.' },
+            ].map((b, i) => (
+              <FadeIn key={i} delay={i * 100}>
+                <div>
+                  <div style={{ fontFamily:'var(--font-cormorant)', fontSize:'5rem', color:'rgba(255,255,255,.15)', lineHeight:1, marginBottom:'1.5rem', fontWeight:300 }}>{b.n}</div>
+                  <p style={{ fontSize:'clamp(1rem,1.4vw,1.15rem)', lineHeight:1.9, color:'rgba(255,255,255,.55)', fontWeight:200 }}>
+                    <strong style={{ color:'#ffffff', fontWeight:400 }}>{b.strong}</strong> {b.body}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+
+        <section style={{ padding:'14vh 8vw' }}>
+          <Divider mb="8rem"/>
+          <div style={{ textAlign:'center', marginBottom:'8rem' }}>
+            <FadeIn><span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.5)', display:'block', marginBottom:'1.5rem' }}>What We Deliver</span></FadeIn>
+            <FadeIn delay={100}><h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.5rem,5vw,5.5rem)', color:'#ffffff', lineHeight:1.15 }}>Focused. Strategic.<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>Built for scale.</em></h2></FadeIn>
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:2, background:'rgba(255,255,255,.08)' }}>
+            {deliverables.map((d, i) => (
+              <FadeIn key={i} delay={i * 80}>
+                <div style={{ background:'#0a0a0a', padding:'4rem 3rem', position:'relative' }}>
+                  <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'4.2rem', color:'rgba(255,255,255,.15)', position:'absolute', top:'1rem', right:'1.5rem' }}>{d.num}</span>
+                  <p style={{ fontSize:'.65rem', letterSpacing:'.35em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'1.2rem' }}>{d.tag}</p>
+                  <h3 style={{ fontFamily:'var(--font-cormorant)', fontWeight:400, fontSize:'clamp(1.5rem,2.6vw,2.4rem)', color:'#ffffff', marginBottom:'1rem', whiteSpace:'pre-line' }}>{d.title}</h3>
+                  <p style={{ fontSize:'.9rem', lineHeight:1.85, color:'rgba(255,255,255,.55)', fontWeight:200 }}>{d.body}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+
+        <FadeIn>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:2, background:'rgba(255,255,255,.08)', minHeight:500 }}>
+            <div style={{ position:'relative', overflow:'hidden' }}>
+              <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80&fit=crop" alt="Framework process" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', filter:'brightness(.4) saturate(.5)', display:'block' }}/>
+            </div>
+            <div style={{ background:'#0a0a0a', padding:'6rem 5rem', display:'flex', flexDirection:'column', justifyContent:'center' }}>
+              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'1.8rem' }}>Strategic Framework</span>
+              <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2rem,3.5vw,4rem)', lineHeight:1.15, color:'#ffffff', marginBottom:'2rem' }}>The path to<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>scalable growth</em></h2>
+              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200, marginBottom:'2.3rem' }}>Performance advertising requires discipline, data intelligence, and structured execution.</p>
+              <div style={{ display:'grid', gap:'1.2rem' }}>
+                {frameworkSteps.map((s) => (
+                  <div key={s.n} style={{ display:'grid', gridTemplateColumns:'3.2rem 1fr', gap:'1.2rem', alignItems:'start' }}>
+                    <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'2.2rem', color:'rgba(255,255,255,.18)' }}>{s.n}</span>
+                    <div>
+                      <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'1.35rem', color:'#fff' }}>{s.t}</span>
+                      <p style={{ margin:'.25rem 0 0', fontSize:'.9rem', lineHeight:1.8, color:'rgba(255,255,255,.55)', fontWeight:200 }}>{s.d}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </FadeIn>
+
+        <section style={{ padding:'16vh 8vw', background:'#050505' }}>
+          <div style={{ maxWidth:1280, margin:'0 auto' }}>
+            <p style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'3rem', textAlign:'center' }}>Why Brands Choose Enhanccee</p>
+            <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.8rem,6vw,6.5rem)', lineHeight:1.05, textAlign:'center', color:'#ffffff', marginBottom:'3rem' }}>Built for performance.<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>Measured by growth.</em></h2>
+            <p style={{ fontSize:'clamp(1.05rem,1.6vw,1.25rem)', lineHeight:1.9, color:'rgba(255,255,255,.5)', textAlign:'center', fontWeight:200, marginBottom:'4rem' }}>
+              The difference between spending and scaling is strategy. Brands partner with Enhanccee because they want more than ads — they want profitable growth, measurable performance, and scalable acquisition systems.
+            </p>
+            <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:1, background:'rgba(255,255,255,.08)' }}>
+              {[{ w:'5×', s:'ROAS Improvement' }, { w:'40%', s:'Lower CPA' }, { w:'10+', s:'Years Experience' }].map((x, i) => (
+                <div key={i} style={{ background:'#000', padding:'3rem 2rem', textAlign:'center' }}>
+                  <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'1.6rem', color:'#fff', display:'block' }}>{x.w}</span>
+                  <span style={{ fontSize:'.75rem', letterSpacing:'.15em', color:'rgba(255,255,255,.4)', textTransform:'uppercase' }}>{x.s}</span>
+                </div>
+              ))}
+            </div>
+            <p style={{ textAlign:'center', marginTop:'2.5rem', color:'rgba(255,255,255,.75)', fontSize:'1.2rem' }}>
+              “We don’t run ads for impressions alone.”<br />We engineer Meta Ads campaigns for measurable business impact.
+            </p>
+          </div>
+        </section>
+
+        <section style={{ padding:'14vh 8vw' }}>
+          <Divider mb="6rem"/>
+          <div style={{ textAlign:'center', marginBottom:'4rem' }}>
+            <span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', display:'block', marginBottom:'1.5rem' }}>What Makes Us Different</span>
+            <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.5rem,5vw,5.5rem)', color:'#ffffff', lineHeight:1.15 }}>Strategic.<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>ROI-first.</em></h2>
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', maxWidth:1200, margin:'6rem auto 0' }}>
+            {[
+              { vs:'Strategic Intelligence', h:'Performance specialists', p:'Performance marketing specialists with 10+ years scaling brands through high-impact Meta Ads strategies.' },
+              { vs:'Creative Precision', h:'Stop-scroll creative', p:'Ad creatives engineered to stop scroll behaviour, communicate authority, and drive conversions.' },
+              { vs:'Data-Driven Execution', h:'Decisions guided by signals', p:'Every campaign decision guided by analytics, audience signals, and conversion performance.' },
+              { vs:'ROI-Focused', h:'Reporting that matters', p:'Transparent reporting centred on revenue growth, customer acquisition cost, and return on ad spend.' },
+            ].map((d, i) => (
+              <div key={i} style={{ padding:'3rem', borderBottom:'1px solid rgba(255,255,255,.06)', borderRight:i % 2 === 0 ? '1px solid rgba(255,255,255,.06)' : 'none' }}>
+                <span style={{ fontSize:'.7rem', color:'rgba(255,255,255,.4)', letterSpacing:'.15em', textTransform:'uppercase', marginBottom:'1rem', display:'block' }}>{d.vs}</span>
+                <h3 style={{ fontFamily:'var(--font-cormorant)', fontWeight:400, fontSize:'clamp(1.6rem,2.5vw,2.5rem)', color:'#ffffff', marginBottom:'1rem' }}>{d.h}</h3>
+                <p style={{ fontSize:'.88rem', lineHeight:1.85, color:'rgba(255,255,255,.5)', fontWeight:200 }}>{d.p}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <FadeIn>
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:2, background:'rgba(255,255,255,.08)', minHeight:500 }}>
+            <div style={{ background:'#0a0a0a', padding:'6rem 5rem', display:'flex', flexDirection:'column', justifyContent:'center' }}>
+              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'1.8rem' }}>Recognition</span>
+              <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2rem,3.5vw,4rem)', lineHeight:1.15, color:'#ffffff', marginBottom:'2rem' }}>
+                Recognised among<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>emerging performance marketing partners</em>
+              </h2>
+              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200, marginBottom:'3rem' }}>
+                Recognised among emerging performance marketing partners delivering Meta Ads services across India, UAE, Australia, and the US — helping brands scale both locally and globally.
+              </p>
+              <Link href="/contact" className="meta-btn-white"><span>Start Your Growth</span></Link>
+            </div>
+            <div style={{ position:'relative', overflow:'hidden' }}>
+              <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&q=80&fit=crop" alt="Recognition" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', filter:'brightness(.38) saturate(.5)', display:'block' }}/>
+            </div>
+          </div>
+        </FadeIn>
+
+        <section style={{ padding:'14vh 8vw' }}>
+          <Divider mb="6rem"/>
+          <div style={{ textAlign:'center', marginBottom:'4rem' }}>
+            <span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', display:'block', marginBottom:'1.5rem' }}>Frequently Asked Questions</span>
+          </div>
+          <div style={{ maxWidth: 1100, margin: '0 auto', background: 'rgba(10,10,10,.6)', border: '1px solid rgba(255,255,255,.08)', padding: '0 3rem' }}>
+            {faqs.map((item, idx) => (
+              <FAQItem key={idx} q={item.q} a={item.a} open={openFAQ === idx} onToggle={() => setOpenFAQ((v) => (v === idx ? null : idx))} />
+            ))}
+          </div>
+        </section>
+
+        <section style={{ padding:'14vh 8vw' }}>
+          <div style={{ background:'rgba(12,12,12,.9)', border:'1px solid rgba(255,255,255,.1)', backdropFilter:'blur(20px)', padding:'8rem 6rem', textAlign:'center', position:'relative', overflow:'hidden', maxWidth:1100, margin:'0 auto' }}>
+            <span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'2rem', display:'block' }}>Ready to scale?</span>
+            <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.5rem,5vw,5.5rem)', color:'#ffffff', lineHeight:1.1, marginBottom:'2rem' }}>
+              Let’s Engineer Your<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>Meta Ads Strategy</em>
+            </h2>
+            <p style={{ fontSize:'clamp(.9rem,1.3vw,1.1rem)', color:'rgba(255,255,255,.45)', fontWeight:200, lineHeight:1.8, maxWidth:720, margin:'0 auto 4rem' }}>
+              Partner with Enhanccee to build Meta Ads campaigns that drive conversions, strengthen brand perception, and scale customer acquisition profitably.
+            </p>
+            <Link href="/contact" className="meta-btn-white"><span>Book Your Strategy Session</span></Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  )
+}

@@ -156,8 +156,8 @@ export default function BrandingPage() {
             <h1 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(3.2rem,8vw,8.5rem)', lineHeight:1, color:'#ffffff', opacity:0, animation:'br-fadeUp 1.1s ease .6s forwards', marginBottom:'1.2rem' }}>
               Crafting Brands<br />That <em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>Rise Above</em><br />the Noise
             </h1>
-            <p style={{ fontWeight:200, fontSize:'clamp(.9rem,1.5vw,1.1rem)', lineHeight:1.8, color:'rgba(255,255,255,.55)', maxWidth:580, margin:'0 auto 3.5rem', opacity:0, animation:'br-fadeUp 1.1s ease .9s forwards' }}>
-              Branding isn&apos;t a service — it&apos;s an art form shaped by strategy, emotion, and intention. We design brands for people who <em>experience</em> them, not just see them.
+            <p style={{ fontWeight:200, fontSize:'clamp(.9rem,1.5vw,1.1rem)', lineHeight:1.8, color:'rgba(255,255,255,.55)', maxWidth:920, margin:'0 auto 3.5rem', opacity:0, animation:'br-fadeUp 1.1s ease .9s forwards' }}>
+              Brands are not built by visibility alone. They are built by identity. At Enhanccee, we design brand identities, brand positioning systems, and strategic brand foundations that transform businesses into recognisable market authorities. Because the brands that dominate markets are not simply seen — they are experienced, remembered, and trusted. Your logo is not your brand. Your brand identity, visual language, and strategic positioning are what shape perception, influence decisions, and define how the world remembers you.
             </p>
             <div style={{ opacity:0, animation:'br-fadeUp 1.1s ease 1.1s forwards', display:'inline-flex', gap:'1.5rem', alignItems:'center' }}>
               <Link href="/contact" className="br-btn-white"><span>Begin Your Identity</span></Link>
@@ -190,12 +190,17 @@ export default function BrandingPage() {
               We don&apos;t design logos.<br />We build <em style={{ fontStyle:'italic', color:'rgba(0,0,0,.7)' }}>brand universes.</em>
             </h2>
           </FadeIn>
+          <FadeIn>
+            <p style={{ fontSize:'clamp(1rem,1.35vw,1.15rem)', lineHeight:1.95, color:'rgba(0,0,0,.58)', fontWeight:200, marginBottom:'4rem', maxWidth:980 }}>
+              A powerful brand is not a single design asset. It is a complete identity system that influences how people perceive, trust, and connect with your business. At Enhanccee, branding begins with strategic clarity and evolves into a fully realised brand ecosystem. Every element — from brand strategy and brand positioning to visual identity and communication design — is engineered to create consistency, emotional resonance, and long-term brand equity. Because true branding does not chase trends. It builds timeless market presence.
+            </p>
+          </FadeIn>
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'5rem 8rem' }}>
             {[
-              { n:'01', strong:'Identity ecosystems aligned with your vision.', body:'Complete brand universes that hold your values, your narrative, and your ambition — built to last across time and markets.' },
-              { n:'02', strong:'Emotion comes before conviction.', body:'Identities that feel human, memorable, and emotionally powerful — because connection is the bridge between attention and loyalty.' },
-              { n:'03', strong:'No templates. No shortcuts.', body:'Only intentional branding built with the precision of craft and the clarity of strategy — designed with permanence in mind.' },
-              { n:'04', strong:'Every element designed to work together.', body:'Strategically, visually, and emotionally — so your brand speaks with one coherent, inevitable voice.' },
+              { n:'01', strong:'Identity ecosystems aligned with your vision.', body:'Every branding decision is intentionally engineered to reinforce who you are and how your market remembers you.' },
+              { n:'02', strong:'Emotion comes before conviction.', body:'Trust begins with feeling. We design identities that connect emotionally before they communicate rationally.' },
+              { n:'03', strong:'No templates. No shortcuts.', body:'No recycled playbooks. No decorative branding. Only intentional systems designed to elevate perception and authority.' },
+              { n:'04', strong:'Timeless market presence.', body:'Because true branding does not chase trends. It builds consistency, recall, and long-term brand equity.' },
             ].map((b, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div>
@@ -240,9 +245,9 @@ export default function BrandingPage() {
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:2, background:'rgba(255,255,255,.08)' }}>
             {[
               { num:'I', tag:'Foundation', title:'Brand Strategy\n& Foundation', body:'The architecture beneath every iconic brand. We establish purpose, values, positioning, archetype, and audience clarity — so every future decision builds on truth.', tags:['Purpose','Positioning','Archetype','Personality','Audience Clarity'] },
-              { num:'II', tag:'Visual', title:'Visual Identity\nSystems', body:'Where strategy becomes sensation. Logos, brand marks, colour palettes, typography, and visual language — each element chosen with intention, crafted with care.', tags:['Logomarks','Colour Palettes','Typography','Visual Direction'] },
-              { num:'III', tag:'Expression', title:'Communication\n& Voice', body:'The words your brand speaks. We build voice, tone, messaging frameworks, and campaign direction — so your brand commands attention in every channel.', tags:['Brand Voice','Tone Frameworks','Messaging','Campaign Direction'] },
-              { num:'IV', tag:'Activation', title:'Brand in Action', body:'Identity brought into the world. Guidelines, internal branding, collateral, merchandise, sound identity, and rebranding — the full expression of who you are.', tags:['Brand Guidelines','Collateral','Sound Identity','Rebranding'] },
+              { num:'II', tag:'Visual', title:'Visual Identity\nSystems', body:'Design that communicates authority. From logo design and typography systems to colour psychology, visual frameworks, and brand guidelines, we craft identities that remain instantly recognisable across every platform.', tags:['Logo Design','Typography','Colour Psychology','Guidelines'] },
+              { num:'III', tag:'Expression', title:'Communication\n& Voice', body:'Brands speak long before they sell. We design brand voice, storytelling frameworks, messaging systems, and communication guidelines that shape how your brand sounds, feels, and connects with your audience.', tags:['Brand Voice','Storytelling','Messaging','Communication'] },
+              { num:'IV', tag:'Activation', title:'Brand in Action', body:'A brand is only powerful when it is experienced everywhere. We translate identity into digital platforms, marketing assets, websites, campaigns, and brand experiences that ensure your presence remains consistent across every touchpoint.', tags:['Websites','Campaigns','Assets','Touchpoints'] },
             ].map((card, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div className="br-eco-card">
@@ -272,11 +277,24 @@ export default function BrandingPage() {
               <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&fit=crop" alt="Creative brand design process" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', filter:'brightness(.4) saturate(.6)', display:'block' }}/>
             </div>
             <div style={{ background:'#ffffff', padding:'6rem 5rem', display:'flex', flexDirection:'column', justifyContent:'center', transition:'background 0.6s ease' }}>
-              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(0,0,0,.4)', marginBottom:'1.8rem' }}>The Enhanccee Process</span>
+              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(0,0,0,.4)', marginBottom:'1.8rem' }}>Process Section</span>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2rem,3.5vw,4rem)', lineHeight:1.15, color:'#000000', marginBottom:'2rem' }}>
                 Intention<br />at <em style={{ fontStyle:'italic', color:'rgba(0,0,0,.65)' }}>every stage</em>
               </h2>
-              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(0,0,0,.5)', fontWeight:200 }}>We begin where most agencies end — with deep discovery. Understanding your world, your audience, and the emotional territory your brand needs to own. From there, every decision is deliberate. Every pixel purposeful. Every word earned.</p>
+              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(0,0,0,.5)', fontWeight:200, marginBottom:'2rem' }}>
+                Brand leadership is never accidental. It is built through deliberate progression. Our branding methodology combines brand strategy, creative design systems, and market positioning to ensure every decision strengthens long-term brand equity.
+              </p>
+              <div style={{ display:'grid', gap:'1rem' }}>
+                {[
+                  '01 Discovery — Deep research into market landscape, audience psychology, and brand perception to uncover strategic opportunities.',
+                  '02 Positioning — Defining your brand strategy, identity direction, and competitive positioning to establish a clear market identity.',
+                  '03 Design — Crafting the visual identity system, brand assets, and creative frameworks that translate strategy into powerful design.',
+                  '04 Activation — Deploying brand identity across websites, marketing channels, digital platforms, and communication touchpoints.',
+                  '05 Evolution — Refining and expanding the brand as it grows — ensuring long-term consistency, authority, and scalability.',
+                ].map((step, idx) => (
+                  <p key={idx} style={{ margin:0, fontSize:'.87rem', lineHeight:1.75, color:'rgba(0,0,0,.62)', fontWeight:300 }}>{step}</p>
+                ))}
+              </div>
             </div>
           </div>
         </FadeIn>
@@ -294,7 +312,7 @@ export default function BrandingPage() {
           <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 100% 80% at 50% 50%, rgba(240,240,240,.4) 0%, transparent 70%)', animation:'br-breathe 8s ease-in-out infinite', pointerEvents:'none' }}/>
           <div style={{ maxWidth:1280, margin:'0 auto', position:'relative', zIndex:1 }}>
             <FadeIn>
-              <p style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(0,0,0,.4)', marginBottom:'4rem', textAlign:'center' }}>Why Enhanccee</p>
+              <p style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(0,0,0,.4)', marginBottom:'4rem', textAlign:'center' }}>Luxury Begins with Identity</p>
             </FadeIn>
             <FadeIn delay={100}>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.8rem,6vw,6.5rem)', lineHeight:1.05, textAlign:'center', color:'#000000', marginBottom:'5rem' }}>
@@ -303,16 +321,17 @@ export default function BrandingPage() {
             </FadeIn>
             <FadeIn delay={200}>
               <p style={{ fontSize:'clamp(1.1rem,1.6vw,1.3rem)', lineHeight:1.9, color:'rgba(0,0,0,.5)', textAlign:'center', fontWeight:200, marginBottom:'5rem' }}>
-                Functionality no longer defines value. Identity does.<br />
-                Brands win not on features, but on <strong style={{ color:'#000000' }}>meaning, narrative, and desire.</strong><br />
-                That is the power of branding.
+                Luxury brands are never accidental.<br />
+                They are intentionally designed to communicate exclusivity, clarity, and distinction.<br />
+                At Enhanccee, we craft premium brand identities, luxury brand positioning systems, and refined design frameworks that elevate perception and create lasting brand equity.<br />
+                Because luxury is not decoration. <strong style={{ color:'#000000' }}>It is precision in identity.</strong>
               </p>
             </FadeIn>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:1, background:'rgba(0,0,0,.08)', marginTop:'4rem' }}>
               {[
-                { word:'Meaning', sub:'Over Features' },
-                { word:'Narrative', sub:'Over Noise' },
-                { word:'Desire', sub:'Over Utility' },
+                { word:'Precision', sub:'Over Decoration' },
+                { word:'Clarity', sub:'Over Noise' },
+                { word:'Distinction', sub:'Over Trends' },
               ].map((s, i) => (
                 <FadeIn key={i} delay={i * 100}>
                   <div style={{ background:'#ffffff', padding:'3rem 2rem', textAlign:'center', border:'1px solid rgba(0,0,0,.1)' }}>
@@ -345,7 +364,7 @@ export default function BrandingPage() {
         <section style={{ padding:'14vh 8vw', background:'#000000', transition:'background 0.6s ease' }}>
           <Divider mb="6rem" isWhite={false}/>
           <div style={{ textAlign:'center', marginBottom:'4rem' }}>
-            <FadeIn><span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', display:'block', marginBottom:'1.5rem' }}>What Makes Enhanccee Different</span></FadeIn>
+            <FadeIn><span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(255,255,255,.4)', display:'block', marginBottom:'1.5rem' }}>Differentiation Section</span></FadeIn>
             <FadeIn delay={100}>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.5rem,5vw,5.5rem)', color:'#ffffff', lineHeight:1.15 }}>
                 Built to Be<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>Inevitable</em>
@@ -353,12 +372,12 @@ export default function BrandingPage() {
             </FadeIn>
           </div>
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', maxWidth:1200, margin:'6rem auto 0' }}>
-            {[
-              { vs:'Emotion-led', h:'Not Trend-led', p:'Trends fade. Emotion endures. We build brands rooted in human feeling — because the brands that outlast eras speak to something permanent.' },
-              { vs:'Strategic', h:'Not Decorative', p:'Beauty with purpose. Every visual decision is anchored in brand strategy — so your identity doesn\'t just look exceptional, it performs with precision.' },
-              { vs:'Timeless', h:'Not Temporary', p:'We design for decades, not seasons. Our brands evolve gracefully without losing their essential character or emotional power.' },
-              { vs:'Designed to Scale', h:'Across All Markets', p:'From local presence to global stage, your brand identity translates with clarity, elegance, and emotional power across every touchpoint.' },
-            ].map((d, i) => (
+              {[
+                { vs:'Built to Be', h:'Inevitable', p:'Our approach to branding is designed for longevity and influence, not short-term aesthetics.' },
+                { vs:'Not Trend-led', h:'Not Decorative', p:'Every identity system is engineered to strengthen recognition, authority, and brand recall — not surface-level aesthetics.' },
+                { vs:'Not Temporary', h:'Across All Markets', p:'Designed to remain consistent and influential across evolving markets, channels, and platforms.' },
+                { vs:'Engineered', h:'to command attention', p:'Because the strongest brands do not compete for attention. They command it.' },
+              ].map((d, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div className="br-diff-item">
                   <div style={{ width:48, height:1, background:'rgba(255,255,255,.4)', marginBottom:'2rem', position:'relative' }}>
@@ -377,11 +396,11 @@ export default function BrandingPage() {
         <FadeIn>
           <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:2, background:'rgba(0,0,0,.08)', minHeight:500 }}>
             <div style={{ background:'#ffffff', padding:'6rem 5rem', display:'flex', flexDirection:'column', justifyContent:'center', transition:'background 0.6s ease' }}>
-              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(0,0,0,.4)', marginBottom:'1.8rem' }}>The Outcome</span>
+              <span style={{ fontSize:'.68rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(0,0,0,.4)', marginBottom:'1.8rem' }}>Closing Section</span>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2rem,3.5vw,4rem)', lineHeight:1.15, color:'#000000', marginBottom:'2rem' }}>
                 Brands that feel<br /><em style={{ fontStyle:'italic', color:'rgba(0,0,0,.65)' }}>inevitable</em>
               </h2>
-              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(0,0,0,.5)', fontWeight:200 }}>When we&apos;re done, your brand doesn&apos;t feel designed — it feels discovered. Like it was always meant to exist exactly this way. That is the mark of identity architecture done at the highest level.</p>
+              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(0,0,0,.5)', fontWeight:200 }}>When emotion, strategy, and design align, identity becomes powerful. It moves beyond visuals and becomes a living presence within the market. A brand that people recognise instantly. Trust naturally. Remember permanently.</p>
             </div>
             <div style={{ position:'relative', overflow:'hidden' }}>
               <img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?w=1200&q=80&fit=crop" alt="Elevated premium brand environment" loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', filter:'brightness(.4) saturate(.6)', display:'block' }}/>
@@ -393,11 +412,11 @@ export default function BrandingPage() {
         <section style={{ padding:'20vh 8vw', position:'relative', overflow:'hidden', textAlign:'center', background:'#000000', transition:'background 0.6s ease' }}>
           <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 90% 70% at 50% 50%, rgba(25,25,25,.4) 0%, transparent 70%)', animation:'br-breathe 10s ease-in-out infinite alternate', pointerEvents:'none' }}/>
           <FadeIn>
-            <p style={{ fontSize:'.7rem', letterSpacing:'.45em', textTransform:'uppercase', color:'rgba(255,255,255,.35)', marginBottom:'4rem', position:'relative', zIndex:1 }}>The Enhanccee Identity Statement</p>
+            <p style={{ fontSize:'.7rem', letterSpacing:'.45em', textTransform:'uppercase', color:'rgba(255,255,255,.35)', marginBottom:'4rem', position:'relative', zIndex:1 }}>When emotion and function align</p>
           </FadeIn>
           <FadeIn delay={100}>
             <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.5rem,6.5vw,7.5rem)', lineHeight:1.1, color:'#ffffff', maxWidth:1280, margin:'0 auto 3rem', position:'relative', zIndex:1 }}>
-              When <em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>emotion</em><br />and function align,<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>identity is born.</em>
+                When emotion<br />and function align,<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>identity is born.</em>
             </h2>
           </FadeIn>
           <FadeIn delay={300}>
@@ -421,13 +440,13 @@ export default function BrandingPage() {
               <div style={{ position:'absolute', top:0, left:0, right:0, height:1, background:'linear-gradient(to right, transparent, rgba(0,0,0,.3), transparent)' }}/>
               {/* Radial glow */}
               <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,0,0,.03) 0%, transparent 60%)', pointerEvents:'none' }}/>
-              <span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(0,0,0,.4)', marginBottom:'2rem', display:'block', position:'relative', zIndex:1 }}>Begin Your Brand Journey</span>
+              <span style={{ fontSize:'.7rem', letterSpacing:'.4em', textTransform:'uppercase', color:'rgba(0,0,0,.4)', marginBottom:'2rem', display:'block', position:'relative', zIndex:1 }}>Your brand identity is your future</span>
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.5rem,5vw,5.5rem)', color:'#000000', lineHeight:1.1, marginBottom:'2rem', position:'relative', zIndex:1 }}>
                 Your brand identity is<br />your <em style={{ fontStyle:'italic', color:'rgba(0,0,0,.65)' }}>future</em> — designed with<br />clarity, elegance, and intention.
               </h2>
-              <p style={{ fontSize:'clamp(.9rem,1.3vw,1.1rem)', color:'rgba(0,0,0,.45)', fontWeight:200, lineHeight:1.8, maxWidth:520, margin:'0 auto 4rem', position:'relative', zIndex:1 }}>We work with founders, leaders, and visionaries ready to build brands that are felt, not just seen. Let&apos;s begin.</p>
+              <p style={{ fontSize:'clamp(.9rem,1.3vw,1.1rem)', color:'rgba(0,0,0,.45)', fontWeight:200, lineHeight:1.8, maxWidth:600, margin:'0 auto 4rem', position:'relative', zIndex:1 }}>A brand that people recognise instantly. Trust naturally. Remember permanently.</p>
               <div style={{ display:'flex', gap:'1.5rem', justifyContent:'center', flexWrap:'wrap', position:'relative', zIndex:1 }}>
-                <Link href="/contact" className="br-btn-white"><span>Book a Discovery Call</span></Link>
+                <Link href="/contact" className="br-btn-white"><span>Begin Your Identity</span></Link>
                 <Link href="/clientele" className="br-btn-ghost">View Our Work</Link>
               </div>
             </div>

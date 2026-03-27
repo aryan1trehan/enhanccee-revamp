@@ -350,7 +350,28 @@ export default function SEOPage() {
               <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2rem,3.5vw,4rem)', lineHeight:1.15, color:'#ffffff', marginBottom:'2rem' }}>
                 The path to<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.65)' }}>dominance</em>
               </h2>
-              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200 }}>Search leadership is not accidental. It is built through sequence, discipline, and precision — Audit, Strategy, Execution, Optimization, and Scale — strengthening visibility while protecting brand equity.</p>
+              <p style={{ fontSize:'.95rem', lineHeight:1.9, color:'rgba(255,255,255,.5)', fontWeight:200, marginBottom:'2.5rem' }}>
+                Search leadership is not accidental. It is built through sequence, discipline, and precision.
+              </p>
+              <div style={{ display:'grid', gap:'1.4rem' }}>
+                {[
+                  { n: '01', t: 'Audit', d: 'Comprehensive technical SEO and competitive analysis to uncover structural gaps, authority weaknesses, and organic growth opportunities across your search ecosystem.' },
+                  { n: '02', t: 'Strategy', d: 'A data-driven SEO roadmap aligned with business goals, revenue targets, and long-term positioning — integrating SEO, AEO, and GEO readiness.' },
+                  { n: '03', t: 'Execution', d: 'Precision implementation across technical SEO, content optimisation, on-page SEO, and authority signals — engineered for performance and scalability.' },
+                  { n: '04', t: 'Optimization', d: 'Continuous refinement powered by performance tracking, search intelligence, and conversion insights — strengthening visibility and protecting brand equity.' },
+                  { n: '05', t: 'Scale', d: 'Sustained organic growth, expanded keyword territory, and strengthened market presence built to compound over time.' },
+                ].map((s) => (
+                  <div key={s.n} style={{ display:'grid', gridTemplateColumns:'3.2rem 1fr', gap:'1.2rem', alignItems:'start' }}>
+                    <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'2.4rem', lineHeight:1, color:'rgba(255,255,255,.18)', fontWeight:300 }}>{s.n}</span>
+                    <div>
+                      <div style={{ display:'flex', alignItems:'baseline', gap:'.6rem', marginBottom:'.35rem' }}>
+                        <span style={{ fontFamily:'var(--font-cormorant)', fontSize:'1.45rem', color:'#ffffff', fontWeight:400 }}>{s.t}</span>
+                      </div>
+                      <p style={{ margin:0, fontSize:'.9rem', lineHeight:1.85, color:'rgba(255,255,255,.55)', fontWeight:200 }}>{s.d}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </FadeIn>
