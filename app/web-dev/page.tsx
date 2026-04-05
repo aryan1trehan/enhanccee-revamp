@@ -190,7 +190,7 @@ export default function WebDevPage() {
             </p>
             <h1 className="font-heading" style={{ fontFamily:'var(--font-cormorant)', fontSize:'clamp(2.8rem,4.5vw,5rem)', fontWeight:400, lineHeight:1.08, color:'#ffffff', marginBottom:30, animation:'wd-up .9s .5s ease forwards', opacity:0 }}>
               Where Luxury Brands<br />
-              <em style={{ fontStyle:'italic', color:'rgba(255,255,255,0.7)', display:'block' }}>Become Digital<br />Experiences</em>
+              <em style={{ fontStyle:'normal', fontWeight:400, color:'#ffffff', display:'block' }}>Become Digital<br />Experiences</em>
             </h1>
             <p style={{ fontSize:'.83rem', lineHeight:1.95, color:'rgba(255,255,255,.55)', maxWidth:440, marginBottom:48, animation:'wd-up .9s .7s ease forwards', opacity:0 }}>
               We don&apos;t build websites. We architect digital environments — precision-engineered to perform, crafted to captivate, and built to endure across every market.
@@ -216,11 +216,6 @@ export default function WebDevPage() {
             </div>
           </div>
 
-          {/* Scroll hint */}
-          <div style={{ position:'absolute', bottom:40, left:'3.75rem', display:'flex', alignItems:'center', gap:16, animation:'wd-up .8s 1.3s ease forwards', opacity:0, zIndex:3 }}>
-            <div style={{ width:48, height:1, background:'linear-gradient(to right, #fff, transparent)' }}/>
-            <span style={{ fontSize:'.55rem', letterSpacing:'.3em', textTransform:'uppercase', color:'rgba(255,255,255,.35)' }}>Scroll to explore</span>
-          </div>
         </section>
 
         <Rule />

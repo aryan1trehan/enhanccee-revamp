@@ -175,7 +175,6 @@ export default function SEOPage() {
     <>
       <style>{`
         @keyframes seo-fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes seo-scrollPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
         @keyframes seo-orbFloat { 0%,100%{transform:translate(0,0)scale(1)} 33%{transform:translate(30px,-20px)scale(1.05)} 66%{transform:translate(-20px,15px)scale(.97)} }
         @keyframes seo-breathe { 0%,100%{opacity:.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.05)} }
         .seo-btn-white { display:inline-block; padding:1rem 2.8rem; border:1px solid rgba(255,255,255,0.6); color:#ffffff; font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; position:relative; overflow:hidden; transition:color .4s; }
@@ -226,10 +225,10 @@ export default function SEOPage() {
 
           <div style={{ position:'relative', zIndex:3, textAlign:'center', maxWidth:1280 }}>
             <p style={{ fontWeight:200, fontSize:'clamp(.65rem,1.2vw,.8rem)', letterSpacing:'.35em', textTransform:'uppercase', color:'rgba(255,255,255,.5)', opacity:0, animation:'seo-fadeUp 1s ease .3s forwards', marginBottom:'2rem' }}>
-              Enhanccee — Search Architecture
+              Enhanccee — Search Engine Optimization
             </p>
             <h1 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(3.2rem,8vw,8.5rem)', lineHeight:1, color:'#ffffff', opacity:0, animation:'seo-fadeUp 1.1s ease .6s forwards', marginBottom:'1.2rem' }}>
-              Where visibility is<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>engineered</em><br />not chased.
+              Where visibility is<br /><em style={{ fontStyle:'normal', fontWeight:300, color:'#ffffff' }}>engineered</em><br />not chased.
             </h1>
             <p style={{ fontWeight:200, fontSize:'clamp(.9rem,1.5vw,1.1rem)', lineHeight:1.8, color:'rgba(255,255,255,.55)', maxWidth:580, margin:'0 auto 3.5rem', opacity:0, animation:'seo-fadeUp 1.1s ease .9s forwards' }}>
               We engineer scalable organic growth for brands that demand authority, not just traffic. This is not reactive optimisation. It is strategic visibility architecture. No shortcuts. No recycled playbooks. Only intentional SEO for brands that intend to lead their category.
@@ -239,10 +238,6 @@ export default function SEOPage() {
             </div>
           </div>
 
-          <div style={{ position:'absolute', bottom:'2.5rem', left:'50%', transform:'translateX(-50%)', zIndex:3, display:'flex', flexDirection:'column', alignItems:'center', gap:'.5rem', opacity:0, animation:'seo-fadeUp 1s ease 1.6s forwards' }}>
-            <span style={{ fontSize:'.65rem', letterSpacing:'.3em', textTransform:'uppercase', color:'rgba(255,255,255,.25)' }}>Explore</span>
-            <div style={{ width:1, height:50, background:'linear-gradient(to bottom, rgba(255,255,255,.4), transparent)', animation:'seo-scrollPulse 2s ease-in-out infinite' }}/>
-          </div>
         </section>
 
         {/* ══════════════ BANNER 1 ══════════════ */}

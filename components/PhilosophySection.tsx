@@ -30,7 +30,7 @@ export default function LongGameSection() {
               </p>
 
               <a
-                href="/about"
+                href="/why-choose-us"
                 className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-black font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-white/90"
               >
                 Explore Our Methodology &#8594;

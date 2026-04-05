@@ -178,7 +178,7 @@ export default function SaaSPage() {
             </p>
             <h1 style={{ fontFamily:'var(--font-cormorant)', fontSize:'clamp(2.8rem,4.5vw,5rem)', fontWeight:400, lineHeight:1.08, color:'#ffffff', marginBottom:30, animation:'saas-up .9s .5s ease forwards', opacity:0 }}>
               Where Software<br />
-              <em style={{ fontStyle:'italic', color:'rgba(255,255,255,0.7)', display:'block' }}>Compounds Into<br />Unstoppable Growth</em>
+              <em style={{ fontStyle:'normal', fontWeight:400, color:'#ffffff', display:'block' }}>Compounds Into<br />Unstoppable Growth</em>
             </h1>
             <p style={{ fontSize:'.83rem', lineHeight:1.95, color:'rgba(255,255,255,.55)', maxWidth:440, marginBottom:48, animation:'saas-up .9s .7s ease forwards', opacity:0 }}>
               We don&apos;t run campaigns. We engineer growth systems — precision-built to acquire, activate, retain, and expand the right users at every stage of your SaaS journey.
@@ -204,11 +204,6 @@ export default function SaaSPage() {
             </div>
           </div>
 
-          {/* Scroll hint */}
-          <div style={{ position:'absolute', bottom:40, left:'3.75rem', display:'flex', alignItems:'center', gap:16, animation:'saas-up .8s 1.3s ease forwards', opacity:0, zIndex:3 }}>
-            <div style={{ width:48, height:1, background:'linear-gradient(to right, #fff, transparent)' }}/>
-            <span style={{ fontSize:'.55rem', letterSpacing:'.3em', textTransform:'uppercase', color:'rgba(255,255,255,.35)' }}>Scroll to explore</span>
-          </div>
         </section>
 
         <Rule />

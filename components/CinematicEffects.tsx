@@ -60,14 +60,6 @@ export default function CinematicEffects() {
 
     sections.forEach((sec) => io.observe(sec))
 
-    // Scroll hint fade-out after first scroll
-    const scrollHint = document.getElementById('scrollHint')
-    const onScroll = () => {
-      if (!scrollHint) return
-      if (window.scrollY > 120) scrollHint.style.opacity = '0'
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    
     // Smooth scrolling for anchor links
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement
@@ -88,7 +80,6 @@ export default function CinematicEffects() {
 
     return () => {
       document.removeEventListener('mousemove', onMove)
-      window.removeEventListener('scroll', onScroll)
       document.removeEventListener('click', handleAnchorClick)
       io.disconnect()
     }
@@ -98,10 +89,6 @@ export default function CinematicEffects() {
     <>
       <div id="cur" />
       <div id="curR" />
-      <div id="scrollHint">
-        <div className="sh-text">Scroll</div>
-        <div className="sh-bar" />
-      </div>
     </>
   )
 }

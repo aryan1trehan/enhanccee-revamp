@@ -22,22 +22,10 @@ function FadeIn({ children, delay = 0, style = {} }: { children: React.ReactNode
   )
 }
 
-/* ─── DATA ─── */
+/* ─── DATA (order: Meta → SEO → Web Dev → UI/UX → Branding → SaaS) ─── */
 const services = [
   {
     num: '01',
-    chapter: 'Visibility',
-    title: 'Search',
-    titleEm: 'Architecture',
-    description: 'Visibility is permanent infrastructure. We engineer organic authority that compounds — systematic coverage of every high-intent query, technical foundations that perform, and content that positions your brand as the definitive voice in every market you choose to own.',
-    disciplines: ['Technical SEO', 'Content Strategy', 'Link Authority', 'Keyword Intelligence', 'Core Web Vitals', 'Analytics'],
-    link: '/seo',
-    image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=85&fit=crop',
-    bg: '#000000',   // black section
-    imageSide: 'right' as const,
-  },
-  {
-    num: '02',
     chapter: 'Acceleration',
     title: 'Performance',
     titleEm: 'Marketing',
@@ -45,7 +33,19 @@ const services = [
     disciplines: ['Google Ads', 'Meta Ads', 'Funnel Architecture', 'Creative Strategy', 'ROAS Optimisation', 'Attribution'],
     link: '/meta',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=85&fit=crop',
-    bg: '#000000',   // black section
+    bg: '#000000',
+    imageSide: 'right' as const,
+  },
+  {
+    num: '02',
+    chapter: 'Visibility',
+    title: 'Search Engine',
+    titleEm: 'Optimization',
+    description: 'Visibility is permanent infrastructure. We engineer organic authority that compounds — systematic coverage of every high-intent query, technical foundations that perform, and content that positions your brand as the definitive voice in every market you choose to own.',
+    disciplines: ['Technical SEO', 'Content Strategy', 'Link Authority', 'Keyword Intelligence', 'Core Web Vitals', 'Analytics'],
+    link: '/seo',
+    image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=85&fit=crop',
+    bg: '#000000',
     imageSide: 'left' as const,
   },
   {
@@ -103,7 +103,6 @@ export default function ServicesPage() {
     <>
       <style>{`
         @keyframes svc-fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes svc-scrollPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
         .svc-tag-black { font-size:clamp(.6rem, 2.5vw, .65rem); padding:.4rem .75rem; border:1px solid rgba(255,255,255,.15); color:rgba(255,255,255,.5); display:inline-block; transition:all .3s; line-height:1.45; }
         @media (min-width:640px){ .svc-tag-black{ padding:.35rem .9rem; } }
         .svc-tag-black:hover { border-color:rgba(255,255,255,.5); color:#ffffff; }
@@ -178,8 +177,11 @@ export default function ServicesPage() {
           .svc-head-row { flex-direction:column; align-items:flex-start; gap:.5rem; }
         }
         .svc-num {
-          font-size:clamp(3.25rem, 22vw, 9rem) !important;
+          font-size:clamp(2rem, 9vw, 5rem) !important;
           margin-top:0 !important;
+        }
+        @media (min-width:768px) {
+          .svc-num { font-size:clamp(2.5rem, 8vw, 6rem) !important; }
         }
         .svc-hero { min-height:100dvh; min-height:100vh; padding:clamp(6.5rem, 14vw, 12vh) clamp(1rem, 5vw, 8vw) clamp(4rem, 10vh, 12vh); }
         .svc-finale { padding:clamp(4rem, 14vw, 20vh) clamp(1rem, 5vw, 8vw); }
@@ -203,8 +205,8 @@ export default function ServicesPage() {
             <p style={{ fontFamily:'var(--font-montserrat)', fontSize:'clamp(.58rem, 2.5vw, .7rem)', letterSpacing:'clamp(.22em, 1.5vw, .4em)', textTransform:'uppercase', color:'rgba(255,255,255,.4)', marginBottom:'clamp(1.25rem, 4vw, 2.5rem)', opacity:0, animation:'svc-fadeUp 1s ease .3s forwards', lineHeight:1.5, padding:'0 0.5rem' }}>
               Enhanccee — Six Disciplines
             </p>
-            <h1 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.35rem, 11vw, 9rem)', lineHeight:1, color:'#ffffff', marginBottom:'clamp(1.25rem, 4vw, 2.5rem)', opacity:0, animation:'svc-fadeUp 1.1s ease .55s forwards', textAlign:'center', padding:'0 0.25rem' }}>
-              One<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.55)' }}>Unified</em><br />Intelligence.
+            <h1 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.1rem, 9vw, 7.5rem)', lineHeight:1, color:'#ffffff', marginBottom:'clamp(1.25rem, 4vw, 2.5rem)', opacity:0, animation:'svc-fadeUp 1.1s ease .55s forwards', textAlign:'center', padding:'0 0.25rem' }}>
+              One<br /><em style={{ fontStyle:'normal', fontWeight:300, color:'#ffffff' }}>Unified</em><br />Intelligence.
             </h1>
             <p style={{ fontFamily:'var(--font-montserrat)', fontSize:'clamp(.85rem, 3.2vw, 1.05rem)', lineHeight:1.85, color:'rgba(255,255,255,.5)', maxWidth:560, margin:'0 auto clamp(2rem, 6vw, 4rem)', fontWeight:200, opacity:0, animation:'svc-fadeUp 1.1s ease .8s forwards', textAlign:'center', padding:'0 0.5rem' }}>
               Enhanccee does not offer a menu of services. It offers a single, interconnected system — engineered to build, scale, and elevate brands that last.
@@ -217,12 +219,6 @@ export default function ServicesPage() {
                 </Link>
               ))}
             </div>
-          </div>
-
-          {/* scroll hint */}
-          <div style={{ position:'absolute', bottom:'clamp(1rem, 4vw, 2.5rem)', left:'50%', transform:'translateX(-50%)', display:'flex', flexDirection:'column', alignItems:'center', gap:'.5rem', opacity:0, animation:'svc-fadeUp 1s ease 1.4s forwards', zIndex:2 }}>
-            <span style={{ fontFamily:'var(--font-montserrat)', fontSize:'.55rem', letterSpacing:'.3em', textTransform:'uppercase', color:'rgba(255,255,255,.2)', lineHeight:1.5 }}>Scroll</span>
-            <div style={{ width:1, height:48, background:'linear-gradient(to bottom, rgba(255,255,255,.3), transparent)', animation:'svc-scrollPulse 2s ease-in-out infinite' }}/>
           </div>
         </section>
 
@@ -290,8 +286,8 @@ export default function ServicesPage() {
               </p>
             </FadeIn>
             <FadeIn delay={100}>
-              <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2rem, 8vw, 6.5rem)', lineHeight:1.06, color:'#ffffff', marginBottom:'clamp(1.25rem, 3vw, 2rem)', textAlign:'center' }}>
-                Six disciplines.<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.6)' }}>One intelligence.</em>
+              <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(1.75rem, 6.5vw, 5rem)', lineHeight:1.06, color:'#ffffff', marginBottom:'clamp(1.25rem, 3vw, 2rem)', textAlign:'center' }}>
+                Six disciplines.<br /><em style={{ fontStyle:'normal', fontWeight:300, color:'#ffffff' }}>One intelligence.</em>
               </h2>
             </FadeIn>
             <FadeIn delay={200}>
@@ -305,10 +301,10 @@ export default function ServicesPage() {
             <FadeIn delay={400}>
               <div className="svc-finale-btns">
                 <Link href="/contact" style={{ display:'inline-block', padding:'clamp(0.85rem, 2.5vw, 1rem) clamp(1.5rem, 5vw, 3rem)', background:'#ffffff', color:'#000000', fontFamily:'var(--font-montserrat)', fontSize:'clamp(.68rem, 2.5vw, .75rem)', fontWeight:600, letterSpacing:'.18em', textTransform:'uppercase', textDecoration:'none', transition:'all .35s', lineHeight:1.5 }} className="bg-white text-black">
-                  Commission Your Architecture
+                  View Portfolio
                 </Link>
-                <Link href="/clientele" style={{ display:'inline-block', padding:'clamp(0.85rem, 2.5vw, 1rem) clamp(1.5rem, 5vw, 3rem)', border:'1px solid rgba(255,255,255,.25)', color:'rgba(255,255,255,.7)', fontFamily:'var(--font-montserrat)', fontSize:'clamp(.68rem, 2.5vw, .75rem)', letterSpacing:'.18em', textTransform:'uppercase', textDecoration:'none', transition:'all .35s', lineHeight:1.5 }}>
-                  View Our Clientele
+                <Link href="/#services" style={{ display:'inline-block', padding:'clamp(0.85rem, 2.5vw, 1rem) clamp(1.5rem, 5vw, 3rem)', background:'#ffffff', color:'#000000', fontFamily:'var(--font-montserrat)', fontSize:'clamp(.68rem, 2.5vw, .75rem)', fontWeight:600, letterSpacing:'.18em', textTransform:'uppercase', textDecoration:'none', transition:'all .35s', lineHeight:1.5 }} className="bg-white text-black">
+                  Our Services
                 </Link>
               </div>
             </FadeIn>
@@ -352,9 +348,17 @@ function ContentBlock({ svc, textColor, subColor, mutedColor, borderColor, numCo
         {/* Heading to the right of number */}
         <div style={{ flex:1, minWidth:0, paddingTop:'clamp(0.25rem, 2vw, 1rem)' }}>
           <FadeIn delay={80}>
-            <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(1.65rem, 5.5vw, 4.5rem)', lineHeight:1.08, color: textColor, marginBottom:0, textAlign:'left', wordBreak:'break-word' }}>
+            <h2 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(1.3rem, 3.4vw, 3rem)', lineHeight:1.12, color: textColor, marginBottom:0, textAlign:'left', wordBreak:'break-word', textWrap:'balance' as const }}>
               {svc.title}<br />
-              <em style={{ fontStyle:'italic', color: textColor === '#ffffff' ? 'rgba(255,255,255,.65)' : 'rgba(0,0,0,.55)' }}>{svc.titleEm}</em>
+              <em style={{
+                fontStyle:'italic',
+                fontWeight:300,
+                fontSize:'clamp(1.15rem, 3vw, 2.65rem)',
+                lineHeight:1.12,
+                display:'block',
+                marginTop:'0.2em',
+                color: textColor === '#ffffff' ? 'rgba(255,255,255,.65)' : 'rgba(0,0,0,.55)',
+              }}>{svc.titleEm}</em>
             </h2>
           </FadeIn>
         </div>

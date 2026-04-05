@@ -197,7 +197,6 @@ export default function MetaPage() {
     <>
       <style>{`
         @keyframes meta-fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes meta-scrollPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
         .meta-btn-white { display:inline-block; padding:1rem 2.8rem; border:1px solid rgba(255,255,255,0.6); color:#ffffff; font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; position:relative; overflow:hidden; transition:color .4s; }
         .meta-btn-white::before { content:''; position:absolute; inset:0; background:#ffffff; transform:scaleX(0); transform-origin:left; transition:transform .45s cubic-bezier(.77,0,.175,1); }
         .meta-btn-white:hover::before { transform:scaleX(1); }
@@ -220,7 +219,7 @@ export default function MetaPage() {
           <div style={{ position:'relative', zIndex:3, textAlign:'center', maxWidth:1280 }}>
             <p style={{ fontWeight:200, fontSize:'clamp(.65rem,1.2vw,.8rem)', letterSpacing:'.35em', textTransform:'uppercase', color:'rgba(255,255,255,.5)', opacity:0, animation:'meta-fadeUp 1s ease .3s forwards', marginBottom:'2rem' }}>Enhanccee — Meta Ads Architecture</p>
             <h1 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(3.2rem,8vw,8.5rem)', lineHeight:1, color:'#ffffff', opacity:0, animation:'meta-fadeUp 1.1s ease .6s forwards', marginBottom:'1.2rem' }}>
-              Where growth is<br /><em style={{ fontStyle:'italic', color:'rgba(255,255,255,.7)' }}>engineered</em><br />not guessed.
+              Where growth is<br /><em style={{ fontStyle:'normal', fontWeight:300, color:'#ffffff' }}>engineered</em><br />not guessed.
             </h1>
             <p style={{ fontWeight:200, fontSize:'clamp(.9rem,1.5vw,1.1rem)', lineHeight:1.8, color:'rgba(255,255,255,.55)', maxWidth:780, margin:'0 auto 3.5rem', opacity:0, animation:'meta-fadeUp 1.1s ease .9s forwards' }}>
               Advertising isn’t about spending more. It’s about deploying capital with precision. At Enhanccee, we design Meta Ads strategies that transform paid media into a scalable revenue engine built on data, behavioural psychology, and performance intelligence. While most treat Meta advertising as campaign management, we build it as infrastructure — engineered to acquire customers efficiently, scale profitably, and strengthen brand equity. No random creatives. No algorithm chasing. Only intentional Meta Ads performance systems for brands that want measurable growth.
@@ -229,10 +228,6 @@ export default function MetaPage() {
               <Link href="/contact" className="meta-btn-white"><span>Book Your Strategy Session</span></Link>
               <Link href="/clientele" className="meta-btn-ghost">Start Your Growth</Link>
             </div>
-          </div>
-          <div style={{ position:'absolute', bottom:'2.5rem', left:'50%', transform:'translateX(-50%)', zIndex:3, display:'flex', flexDirection:'column', alignItems:'center', gap:'.5rem', opacity:0, animation:'meta-fadeUp 1s ease 1.6s forwards' }}>
-            <span style={{ fontSize:'.65rem', letterSpacing:'.3em', textTransform:'uppercase', color:'rgba(255,255,255,.25)' }}>Explore</span>
-            <div style={{ width:1, height:50, background:'linear-gradient(to bottom, rgba(255,255,255,.4), transparent)', animation:'meta-scrollPulse 2s ease-in-out infinite' }}/>
           </div>
         </section>
 
