@@ -206,7 +206,7 @@ export default function ServicesPage() {
               Enhanccee — Six Disciplines
             </p>
             <h1 style={{ fontFamily:'var(--font-cormorant)', fontWeight:300, fontSize:'clamp(2.1rem, 9vw, 7.5rem)', lineHeight:1, color:'#ffffff', marginBottom:'clamp(1.25rem, 4vw, 2.5rem)', opacity:0, animation:'svc-fadeUp 1.1s ease .55s forwards', textAlign:'center', padding:'0 0.25rem' }}>
-              One<br /><em style={{ fontStyle:'normal', fontWeight:300, color:'#ffffff' }}>Unified</em><br />Intelligence.
+              Our<br />Services
             </h1>
             <p style={{ fontFamily:'var(--font-montserrat)', fontSize:'clamp(.85rem, 3.2vw, 1.05rem)', lineHeight:1.85, color:'rgba(255,255,255,.5)', maxWidth:560, margin:'0 auto clamp(2rem, 6vw, 4rem)', fontWeight:200, opacity:0, animation:'svc-fadeUp 1.1s ease .8s forwards', textAlign:'center', padding:'0 0.5rem' }}>
               Enhanccee does not offer a menu of services. It offers a single, interconnected system — engineered to build, scale, and elevate brands that last.

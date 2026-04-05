@@ -145,6 +145,12 @@ export default function Footer() {
                 >
                   info@enhanccee.com
                 </a>
+                <a
+                  href="tel:+917891368868"
+                  className="block text-white font-medium hover:text-white/50 transition-colors duration-200 hover:underline underline-offset-4 decoration-1"
+                >
+                  +91 7891368868
+                </a>
               </div>
             </div>
 

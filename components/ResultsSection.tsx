@@ -25,28 +25,22 @@ export default function ResultsSection() {
 
   const results = [
     {
-      number: '127%',
-      label: 'Average Revenue Growth',
+      number: '7+',
+      label: 'Years of Experience',
       description: '',
       icon: '◆',
     },
     {
-      number: '$2.4B',
-      label: 'Portfolio Market Value',
+      number: '100+',
+      label: 'Happy Clients',
       description: '',
       icon: '✦',
     },
     {
-      number: '94%',
-      label: 'Client Retention Rate',
+      number: '15x',
+      label: 'Growth Per Month',
       description: '',
       icon: '●',
-    },
-    {
-      number: '12+ Years',
-      label: 'Of Strategic Excellence',
-      description: '',
-      icon: '▲',
     },
   ]
 
@@ -73,7 +67,7 @@ export default function ResultsSection() {
             <div className="h-px w-24 bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mt-6" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-stretch">
             {results.map((result, index) => (
               <div
                 key={index}

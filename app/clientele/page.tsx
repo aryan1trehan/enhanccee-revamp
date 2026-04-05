@@ -41,7 +41,7 @@ export default function ClientelePage() {
             {clients.map((client) => (
               <div
                 key={client.name}
-                className="flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 rounded-xl sm:rounded-2xl border border-white/20 bg-white/[0.06] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] hover:border-white/45 hover:bg-white/[0.1] transition-all duration-300 group min-h-0"
+                className="flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 rounded-xl sm:rounded-2xl border border-white/20 bg-black hover:border-white/45 transition-all duration-300 group min-h-0"
               >
                 <div className="relative mx-auto h-36 w-full max-w-[300px] sm:h-40 sm:max-w-[320px] md:h-44 lg:h-48">
                   <Image
@@ -49,7 +49,7 @@ export default function ClientelePage() {
                     alt={client.name}
                     fill
                     sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 360px"
-                    className="object-contain object-center p-0.5 opacity-95 contrast-105 brightness-105 group-hover:opacity-100 group-hover:brightness-110 transition-all duration-300"
+                    className="object-contain object-center invert opacity-95 group-hover:opacity-100 transition-all duration-300"
                   />
                 </div>
               </div>

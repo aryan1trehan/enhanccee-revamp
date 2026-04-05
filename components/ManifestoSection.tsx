@@ -15,9 +15,7 @@ export default function ManifestoSection() {
 
             {/* Main heading */}
             <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-snug sm:leading-tight mb-0 px-0 sm:px-4 md:px-8">
-              Enhanccee builds brands with presence, precision, and authority.
-              Through strategy, design, and performance, we help ambitious brands{' '}
-              define their legacy &mdash; not chase trends.
+              From presence to permanence, Enhanccee builds brands that define their era.
             </h2>
 
             {/* Closing quote */}
