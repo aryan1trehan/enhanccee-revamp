@@ -19,37 +19,39 @@ const clients = [
 
 export default function ClientelePage() {
   return (
-    <main className="min-h-screen bg-black pt-24">
+    <main className="min-h-screen bg-black overflow-x-hidden pt-20 sm:pt-24">
       <Header />
 
-      <section className="py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-          <div className="text-center mb-14">
-            <span className="text-white/40 text-xs font-semibold uppercase tracking-[0.3em] mb-4 block">
+      <section className="py-12 sm:py-16 md:py-20 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+          <div className="text-center mb-10 sm:mb-12 md:mb-14">
+            <span className="text-white/40 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-3 sm:mb-4 block">
               Our Clientele
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-light text-white mb-4 sm:mb-6 px-1 leading-tight">
               Our Collaborations
             </h1>
-            <div className="h-px w-16 bg-white/20 mx-auto mb-6" />
-            <p className="text-lg md:text-xl text-white/60 italic max-w-3xl mx-auto leading-relaxed">
+            <div className="h-px w-12 sm:w-16 bg-white/20 mx-auto mb-4 sm:mb-6" />
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/60 italic max-w-3xl mx-auto leading-relaxed px-2">
               Select brands that trust Enhanccee with their identity, digital presence, and growth.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-6xl mx-auto">
             {clients.map((client) => (
               <div
                 key={client.name}
-                className="flex items-center justify-center px-12 py-14 bg-black hover:bg-white/5 transition-all duration-300 group"
+                className="flex items-center justify-center px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 rounded-xl sm:rounded-2xl border border-white/20 bg-white/[0.06] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] hover:border-white/45 hover:bg-white/[0.1] transition-all duration-300 group min-h-0"
               >
-                <Image
-                  src={client.logo}
-                  alt={client.name}
-                  width={520}
-                  height={320}
-                  className="object-contain h-full w-auto max-h-[200px] filter invert opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                />
+                <div className="relative mx-auto h-36 w-full max-w-[300px] sm:h-40 sm:max-w-[320px] md:h-44 lg:h-48">
+                  <Image
+                    src={client.logo}
+                    alt={client.name}
+                    fill
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 360px"
+                    className="object-contain object-center p-0.5 opacity-95 contrast-105 brightness-105 group-hover:opacity-100 group-hover:brightness-110 transition-all duration-300"
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -60,6 +62,3 @@ export default function ClientelePage() {
     </main>
   )
 }
-
-
-

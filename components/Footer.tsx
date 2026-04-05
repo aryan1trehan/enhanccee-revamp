@@ -4,16 +4,16 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-white/10 pt-16 pb-10">
-      <div className="container mx-auto px-6 md:px-12 lg:px-20">
+    <footer className="bg-black border-t border-white/10 pt-12 sm:pt-16 pb-8 sm:pb-10">
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
 
         {/* ── Top CTA ── */}
-        <div className="text-center mb-14 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-6xl tracking-[0.1em] uppercase font-serif font-light text-white inline-flex items-center gap-2 flex-wrap justify-center">
+        <div className="text-center mb-10 sm:mb-14 md:mb-16 px-1">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl tracking-[0.08em] sm:tracking-[0.1em] uppercase font-serif font-light text-white inline-flex items-center gap-1.5 sm:gap-2 flex-wrap justify-center leading-tight">
             <span>PR</span>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-white text-black hover:bg-gray-200 transition-all duration-300 hover:scale-110 group"
+              className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 shrink-0 rounded-full bg-white text-black hover:bg-gray-200 transition-all duration-300 hover:scale-110 group"
               aria-label="Go to contact page"
             >
               <svg
@@ -37,7 +37,7 @@ export default function Footer() {
         <div className="h-px bg-white/10 mb-12" />
 
         {/* ── Social buttons ── */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-14">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-10 sm:mb-14">
           {[
             { label: 'Facebook', href: '#' },
             { label: 'Twitter', href: '#' },
@@ -47,7 +47,7 @@ export default function Footer() {
             <a
               key={item.label}
               href={item.href}
-              className="flex items-center justify-center gap-3 rounded-full bg-black border border-white/15 px-6 py-3 text-white transition-all duration-300 hover:bg-white hover:text-black hover:border-white group"
+              className="flex items-center justify-center gap-2 sm:gap-3 rounded-full bg-black border border-white/15 px-3 sm:px-6 py-2.5 sm:py-3 text-white transition-all duration-300 hover:bg-white hover:text-black hover:border-white group min-h-[44px]"
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = '#000000'
                 ;(e.currentTarget.style as any).webkitTextFillColor = '#000000'
@@ -70,7 +70,7 @@ export default function Footer() {
               <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-white text-xs group-hover:bg-black/20 group-hover:text-black transition-colors">
                 ●
               </span>
-              <span className="uppercase tracking-[0.15em] text-[11px] font-semibold group-hover:text-black transition-colors">{item.label}</span>
+              <span className="uppercase tracking-[0.12em] sm:tracking-[0.15em] text-[10px] sm:text-[11px] font-semibold group-hover:text-black transition-colors text-center leading-tight">{item.label}</span>
             </a>
           ))}
         </div>
@@ -88,16 +88,16 @@ export default function Footer() {
               <p className="text-white text-sm font-semibold mb-3 uppercase tracking-wider">Stay in the loop</p>
               <form
                 onSubmit={(e) => e.preventDefault()}
-                className="flex items-stretch rounded-full bg-black border border-white/20 overflow-hidden hover:border-white transition-colors duration-200 focus-within:border-white"
+                className="flex flex-col sm:flex-row sm:items-stretch gap-2 sm:gap-0 rounded-2xl sm:rounded-full bg-black border border-white/20 overflow-hidden hover:border-white transition-colors duration-200 focus-within:border-white"
               >
                 <input
                   type="email"
                   placeholder="Enter your email..."
-                  className="flex-1 px-4 py-2.5 text-sm bg-transparent text-white placeholder-white/40 focus:outline-none"
+                  className="flex-1 min-w-0 px-4 py-3 sm:py-2.5 text-sm bg-transparent text-white placeholder-white/40 focus:outline-none rounded-none"
                 />
                 <button
                   type="submit"
-                  className="flex items-center justify-center px-3 bg-transparent transition-colors"
+                  className="flex items-center justify-center px-4 sm:px-3 py-2 sm:py-0 bg-white/5 sm:bg-transparent border-t sm:border-t-0 border-white/10 sm:border-0 transition-colors"
                   aria-label="Submit email"
                 >
                   <span className="h-7 w-7 rounded-full bg-white flex items-center justify-center text-black text-xs hover:bg-gray-200 transition-colors">
@@ -108,7 +108,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Nav + Office — centered across remaining 2 cols */}
+          {/* Nav + Contact — centered across remaining 2 cols */}
           <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row gap-10 md:gap-20 md:justify-center">
 
             {/* Main Pages */}
@@ -135,20 +135,10 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Office / Contact */}
+            {/* Contact */}
             <div>
-              <h4 className="text-white text-xs font-bold uppercase tracking-[0.25em] mb-6">Office</h4>
-              <p className="text-white text-sm mb-6 leading-relaxed">
-                Enhanccee Studio<br />Jaipur, India
-              </p>
-              <h4 className="text-white text-xs font-bold uppercase tracking-[0.25em] mb-4">Contact</h4>
+              <h4 className="text-white text-xs font-bold uppercase tracking-[0.25em] mb-6">Contact</h4>
               <div className="space-y-2 text-sm">
-                <a
-                  href="tel:+917891368868"
-                  className="block text-white font-medium hover:text-white/50 transition-colors duration-200 hover:underline underline-offset-4 decoration-1"
-                >
-                  +91 7891368868
-                </a>
                 <a
                   href="mailto:info@enhanccee.com"
                   className="block text-white font-medium hover:text-white/50 transition-colors duration-200 hover:underline underline-offset-4 decoration-1"

@@ -65,13 +65,13 @@ export default function ServicesSection() {
   ]
 
   return (
-    <section id="services" className="py-24 bg-black">
-      <div className="container mx-auto px-6 md:px-12 lg:px-16">
-        <div className="text-center mb-16">
+    <section id="services" className="py-16 sm:py-20 md:py-24 bg-black">
+      <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+        <div className="text-center mb-10 sm:mb-14 md:mb-16">
           <span className="text-white/50 text-xs font-semibold uppercase tracking-[0.3em] mb-4 block">
             Our Services
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl text-white font-serif font-light">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-serif font-light px-2">
             Focused. Strategic. Built for Scale.
           </h2>
         </div>
@@ -81,9 +81,9 @@ export default function ServicesSection() {
             <Link
               key={index}
               href={service.link}
-              className="bg-black p-10 transition-all duration-300 hover:bg-white group flex flex-col"
+              className="bg-black p-6 sm:p-8 md:p-10 transition-all duration-300 hover:bg-white group flex flex-col min-h-0"
             >
-              <div className="text-white/60 mb-6 group-hover:text-black group-hover:scale-110 transition-all duration-300">
+              <div className="text-white/60 mb-4 sm:mb-6 group-hover:text-black group-hover:scale-110 transition-all duration-300">
                 {service.icon}
               </div>
               <h3 className="text-lg font-semibold text-white uppercase tracking-widest mb-3 group-hover:text-black transition-colors duration-300">

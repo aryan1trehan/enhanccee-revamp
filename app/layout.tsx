@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Montserrat } from 'next/font/google'
 import './globals.css'
 import CinematicEffects from '@/components/CinematicEffects'
@@ -25,6 +25,12 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: 'Enhanccee - Elite Marketing & Growth Partner',
   description: 'Crafting brands that stand above the noise',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
 }
 
 export default function RootLayout({

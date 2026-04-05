@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/15">
-      <nav className="w-full max-w-[1920px] mx-auto px-6 py-4 relative">
+      <nav className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 py-3 sm:py-4 relative">
         <div className="flex items-center justify-between">
 
           {/* Logo – Left */}
@@ -55,7 +55,7 @@ export default function Header() {
               href="/contact"
               className="bg-white text-black px-6 py-2 font-semibold text-xs lg:text-sm hover:bg-gray-200 transition-all duration-300 hover:scale-105 uppercase tracking-wider whitespace-nowrap"
             >
-              INQUIRY
+              ENQUIRY
             </Link>
           </div>
 
@@ -77,7 +77,7 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-white/10 pt-4 space-y-4">
+          <div className="md:hidden mt-4 pb-4 border-t border-white/10 pt-4 space-y-4 max-h-[min(70vh,calc(100dvh-5rem))] overflow-y-auto overscroll-contain">
             {[
               { label: 'HOME', href: '/' },
               { label: 'CLIENTELE', href: '/clientele' },
@@ -97,7 +97,7 @@ export default function Header() {
               href="/contact"
               className="block bg-white text-black px-6 py-2 font-semibold text-xs text-center uppercase tracking-wider mt-4 hover:bg-gray-200 transition-colors"
             >
-              INQUIRY
+              ENQUIRY
             </Link>
           </div>
         )}
